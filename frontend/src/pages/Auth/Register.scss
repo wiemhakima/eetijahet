@@ -1,0 +1,451 @@
+@use 'sass:color';
+@use '../../styles/variables' as *;
+
+.register {
+  min-height: 100vh;
+  display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+
+  // ── Two-column container ───────────────────────────
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    width: 100%;
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ── LEFT PANEL ─────────────────────────────────────
+  &__left {
+    background: $white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px;
+    min-height: 100vh;
+    overflow-y: auto;
+
+    @media (max-width: $breakpoint-md) {
+      padding: 32px 24px;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      padding: 24px 16px;
+    }
+  }
+
+  &__form-wrap {
+    width: 100%;
+    max-width: 440px;
+    padding-top: 16px;
+    padding-bottom: 40px;
+  }
+
+  // Logo
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 36px;
+
+    &-icon { font-size: 24px; line-height: 1; }
+    &-text {
+      font-size: 22px;
+      font-weight: $font-weight-bold;
+      color: #1e3a5f;
+      letter-spacing: -0.3px;
+    }
+  }
+
+  &__title {
+    font-size: 26px;
+    font-weight: $font-weight-bold;
+    color: #1a202c;
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 0 28px;
+  }
+
+  // ── Form ───────────────────────────────────────────
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    margin-bottom: $spacing-5;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-3;
+
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $text-color;
+  }
+
+  &__input-wrapper {
+    position: relative;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $spacing-3 $spacing-10 $spacing-3 $spacing-10;
+    border: 2px solid rgba(226, 232, 240, 1);
+    border-radius: $border-radius-lg;
+    font-size: $font-size-sm;
+    background: $white;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+    }
+
+    &--error {
+      border-color: $danger-color;
+      &:focus { box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1); }
+    }
+
+    &::placeholder { color: $text-muted; }
+  }
+
+  &__input-icon {
+    position: absolute;
+    left: $spacing-3;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-light;
+    svg { width: 15px; height: 15px; }
+  }
+
+  &__password-toggle {
+    position: absolute;
+    right: $spacing-3;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: $text-light;
+    cursor: pointer;
+    padding: $spacing-1;
+    border-radius: $border-radius-sm;
+    transition: all 0.2s ease;
+    line-height: 0;
+
+    &:hover {
+      background: rgba(248, 250, 252, 1);
+      color: $text-color;
+    }
+    svg { width: 15px; height: 15px; }
+  }
+
+  &__field-error {
+    font-size: $font-size-xs;
+    color: $danger-color;
+    font-weight: $font-weight-medium;
+    margin-top: 2px;
+  }
+
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-3 $spacing-4;
+    background: rgba(244, 67, 54, 0.08);
+    border: 1px solid rgba(244, 67, 54, 0.2);
+    border-radius: $border-radius-lg;
+    color: $danger-color;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    svg { width: 16px; height: 16px; flex-shrink: 0; }
+  }
+
+  // ── Plan cards ─────────────────────────────────────
+  &__plans-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+  }
+
+  &__plans-label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $text-color;
+  }
+
+  &__plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-2;
+
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__plan-card {
+    padding: 12px 10px;
+    border: 2px solid rgba(226, 232, 240, 1);
+    border-radius: $border-radius-lg;
+    background: $white;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+      background: rgba(59, 130, 246, 0.02);
+    }
+
+    &--active {
+      border-color: $primary-color;
+      background: rgba(26, 115, 232, 0.05);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+    }
+  }
+
+  &__plan-name {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $text-color;
+    margin-bottom: 4px;
+  }
+
+  &__plan-price {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: $primary-color;
+    margin-bottom: 4px;
+  }
+
+  &__plan-desc {
+    font-size: 11px;
+    color: $text-light;
+    line-height: 1.3;
+  }
+
+  // ── Submit ─────────────────────────────────────────
+  &__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+    width: 100%;
+    padding: $spacing-4 $spacing-6;
+    background: $primary-color;
+    color: $white;
+    border: none;
+    border-radius: $border-radius-lg;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(26, 115, 232, 0.3);
+
+    &:hover:not(:disabled) {
+      background: color.adjust($primary-color, $lightness: -5%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(26, 115, 232, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+
+  &__spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid $white;
+    border-radius: 50%;
+    animation: registerSpin 1s linear infinite;
+    flex-shrink: 0;
+  }
+
+  // ── Login link ─────────────────────────────────────
+  &__login-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #64748b;
+  }
+
+  &__login-cta {
+    color: $primary-color;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+
+  // ── RIGHT PANEL ────────────────────────────────────
+  &__right {
+    background: linear-gradient(135deg, #1e3a5f 0%, #3b82f6 100%);
+    padding: 48px;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    @media (max-width: $breakpoint-lg) {
+      display: none;
+    }
+
+    &-content {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    &-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    &-logo-icon { font-size: 28px; line-height: 1; }
+    &-logo-text {
+      font-size: 22px;
+      font-weight: $font-weight-bold;
+      color: $white;
+      letter-spacing: -0.3px;
+    }
+  }
+
+  // Trial badges
+  &__trial-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  &__badge {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    backdrop-filter: blur(8px);
+  }
+
+  &__headline {
+    font-size: 24px;
+    font-weight: $font-weight-bold;
+    color: $white;
+    line-height: 1.4;
+    margin: 0 0 32px;
+  }
+
+  // Feature cards
+  &__features {
+    margin-bottom: 0;
+  }
+
+  &__feature-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    &:last-child { margin-bottom: 0; }
+  }
+
+  &__feature-emoji {
+    font-size: 26px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  &__feature-title {
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    color: $white;
+    margin-bottom: 4px;
+  }
+
+  &__feature-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+  }
+
+  // Stats bar
+  &__stats-bar {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 28px;
+    text-align: center;
+  }
+
+  &__stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__stat-number {
+    font-size: 24px;
+    font-weight: $font-weight-bold;
+    color: $white;
+    line-height: 1.2;
+  }
+
+  &__stat-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 4px;
+  }
+}
+
+@keyframes registerSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

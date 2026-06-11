@@ -1,0 +1,633 @@
+@use '../../../../styles/variables' as *;
+
+
+$header-bg: #232f3e;
+$header-bg-hover: #2a3a4e;
+$header-text: #d5dbdb;
+$header-text-bright: #ffffff;
+$header-border: #37475a;
+$header-search-bg: #0f1b2a;
+$header-search-border: #5f6b7a;
+$header-search-focus: #539fe5;
+$header-accent: #539fe5;
+
+.aws-header {
+  height: 56px;
+  background: $header-bg;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+  border-bottom: 1px solid $header-border;
+
+  &__content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  &__brand {
+    font-size: 16px;
+    font-weight: 700;
+    color: $header-text-bright;
+    letter-spacing: -0.01em;
+  }
+
+  &__separator {
+    color: $header-border;
+    font-weight: 300;
+    font-size: 18px;
+  }
+
+  &__console {
+    font-size: 14px;
+    font-weight: 400;
+    color: $header-text;
+  }
+
+  &__center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  &__search {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: $header-search-bg;
+    border: 1px solid $header-search-border;
+    border-radius: 4px;
+    transition: border-color 0.15s ease;
+    overflow: visible;
+
+    svg {
+      position: absolute;
+      left: 10px;
+      color: $header-text;
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+
+    input {
+      width: 100%;
+      height: 36px;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 0 36px 0 34px;
+      font-size: 13px;
+      font-weight: 400;
+      color: $header-text-bright;
+      font-family: inherit;
+
+      &::placeholder {
+        color: $header-text;
+        opacity: 0.6;
+      }
+
+      // Remove webkit search cancel button
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-decoration {
+        -webkit-appearance: none;
+        appearance: none;
+      }
+    }
+
+    &--focused {
+      border-color: $header-search-focus;
+    }
+  }
+
+  &__search-shortcut {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 500;
+    color: $header-text;
+    opacity: 0.5;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-family: -apple-system, system-ui, sans-serif;
+    pointer-events: none;
+  }
+
+  &__search-clear {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: $header-text;
+    z-index: 2;
+
+    &:hover {
+      color: $header-text-bright;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  // ── Right: Actions ──────────────────────────────────────────
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  &__action {
+    position: relative;
+  }
+
+  &__icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #FAEEDA;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+
+    svg {
+      color: #BA7517;
+      stroke: #BA7517;
+    }
+
+    &:hover {
+      background: #f0d9b5;
+    }
+
+    &--active {
+      background: #f0d9b5;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 16px;
+    background: #E24B4A;
+    border-radius: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 1px 5px;
+    line-height: 1;
+    text-align: center;
+    border: 2px solid #fff;
+  }
+
+  &__user-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: $header-text;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      font-size: 11px;
+    }
+
+    svg {
+      opacity: 0.6;
+    }
+
+    &:hover {
+      background: $header-bg-hover;
+      color: $header-text-bright;
+    }
+
+    &--active {
+      background: $header-bg-hover;
+      color: $header-text-bright;
+    }
+  }
+
+  &__user-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: $header-text;
+    white-space: nowrap;
+  }
+}
+
+// ─── Dropdown (shared) ──────────────────────────────────────────────────────
+
+.aws-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #d5dbdb;
+  border-radius: 8px;
+  min-width: 300px;
+  z-index: 9999;
+  animation: awsDropdownIn 0.12s ease-out;
+
+  &--notifications {
+    min-width: 380px;
+  }
+
+  &--user {
+    min-width: 260px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #16191f;
+  }
+
+  &__action-link {
+    background: none;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: #0972d3;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover {
+      color: #033160;
+      text-decoration: underline;
+    }
+  }
+
+  &__body {
+    max-height: 360px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #d5dbdb;
+      border-radius: 2px;
+    }
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    color: #687078;
+    gap: 8px;
+
+    svg {
+      opacity: 0.4;
+    }
+
+    span {
+      font-size: 13px;
+    }
+  }
+
+  &__footer {
+    border-top: 1px solid #e9ecef;
+    padding: 8px;
+  }
+
+  &__footer-btn {
+    width: 100%;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid #d5dbdb;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #0972d3;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: #f2f8fd;
+    }
+  }
+
+  &__user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #16191f;
+    line-height: 1.3;
+  }
+
+  &__user-email {
+    font-size: 12px;
+    color: #687078;
+    line-height: 1.3;
+  }
+
+  &__divider {
+    height: 1px;
+    background: #e9ecef;
+    margin: 0;
+  }
+
+  &__menu {
+    padding: 4px;
+  }
+
+  &__menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #16191f;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s ease;
+
+    svg {
+      color: #687078;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background: #f2f3f3;
+    }
+
+    &--danger {
+      color: #d13212;
+
+      svg {
+        color: #d13212;
+      }
+
+      &:hover {
+        background: #fdf3f0;
+      }
+    }
+  }
+}
+
+@keyframes awsDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Notification Items ─────────────────────────────────────────────────────
+
+.aws-notification-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.aws-notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f2f3f3;
+  transition: background 0.1s ease;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: #f2f3f3;
+  }
+
+  &--unread {
+    background: #f2f8fd;
+
+    &:hover {
+      background: #e8f4fd;
+    }
+  }
+
+  &__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+
+    &--warning {
+      background: #fef3cd;
+      color: #8a6d3b;
+    }
+
+    &--error {
+      background: #fdf3f0;
+      color: #d13212;
+    }
+
+    &--info {
+      background: #f2f8fd;
+      color: #0972d3;
+    }
+
+    &--success {
+      background: #f2fcf3;
+      color: #037f0c;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #16191f;
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+
+  &__desc {
+    font-size: 12px;
+    color: #687078;
+    line-height: 1.4;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__time {
+    font-size: 11px;
+    color: #9ba7b6;
+    font-weight: 500;
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    background: #0972d3;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+}
+
+// ─── Responsive ─────────────────────────────────────────────────────────────
+
+@media (max-width: $breakpoint-lg) {
+  .aws-header__search {
+    max-width: 320px;
+  }
+
+  .aws-header__user-name {
+    display: none;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .aws-header {
+    height: 48px;
+
+    &__center {
+      display: none;
+    }
+
+    &__console {
+      display: none;
+    }
+
+    &__separator {
+      display: none;
+    }
+  }
+
+  .aws-dropdown {
+    &--notifications {
+      min-width: 300px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .aws-header__content {
+    padding: 0 8px;
+    gap: 8px;
+  }
+
+  .aws-header__user-name {
+    display: none;
+  }
+
+  .aws-dropdown {
+    min-width: 260px;
+
+    &--notifications {
+      min-width: 280px;
+    }
+  }
+}
+
+// ─── Focus / Accessibility ──────────────────────────────────────────────────
+
+.aws-header__icon-btn:focus-visible,
+.aws-header__user-btn:focus-visible,
+.aws-dropdown__menu-item:focus-visible,
+.aws-dropdown__footer-btn:focus-visible {
+  outline: 2px solid $header-search-focus;
+  outline-offset: 1px;
+}
+
+// ─── Reduced Motion ─────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .aws-dropdown {
+    animation: none;
+  }
+}
+.reset-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  padding: 10px 14px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 13px;
+}
+
+.reset-btn:hover {
+  background: #1d4ed8;
+}

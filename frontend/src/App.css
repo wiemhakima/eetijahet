@@ -1,0 +1,44 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* RTL layout adjustments */
+[dir="rtl"] .settings-card__body label,
+[dir="rtl"] .settings-field label,
+[dir="rtl"] .settings-info-item__label,
+[dir="rtl"] .settings-danger-item__label {
+  text-align: right;
+}
+
+[dir="rtl"] .settings-field input,
+[dir="rtl"] .settings-field textarea {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .notification-card {
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .notification-content .notification-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .notification-meta {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .road-graph-panel {
+  direction: rtl;
+}
+
+/* Keep GPS coordinates always LTR */
+[dir="rtl"] .coord-value,
+[dir="rtl"] [style*="fontFamily: 'monospace'"],
+[dir="rtl"] [style*="fontFamily: monospace"] {
+  direction: ltr;
+  unicode-bidi: embed;
+}

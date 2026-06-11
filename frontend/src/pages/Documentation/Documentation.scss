@@ -1,0 +1,932 @@
+@use '../../styles/variables' as *;
+@use "sass:color";
+
+.modern-documentation-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+  color: $text-color;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  isolation: isolate;
+  * {
+    box-sizing: border-box;
+  }
+  // Encapsulate all typography to prevent global conflicts
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    font-family: inherit;
+  }
+  
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  
+}
+
+// Modern Hero Section - Encapsulated
+.modern-documentation-page .docs-hero {
+  position: relative;
+  padding: clamp(1.25rem, 2.5vw, 2rem) clamp(2rem, 4vw, 3rem);
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%),
+    radial-gradient(ellipse at top left, rgba(26, 115, 232, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(66, 133, 244, 0.03) 0%, transparent 50%);
+  border-bottom: 1px solid rgba(26, 115, 232, 0.1);
+  overflow: hidden;
+  isolation: isolate; // Prevent z-index conflicts
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: $gradient-primary;
+    z-index: 1;
+  }
+  
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(26, 115, 232, 0.1);
+      border: 1px solid rgba(26, 115, 232, 0.2);
+      border-radius: $border-radius-full;
+      color: $primary-color;
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin: 0 0 clamp(1.5rem, 3vw, 2rem) 0; // Reset margin to prevent conflicts
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+    }
+    
+    .hero-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 clamp(0.5rem, 1vw, 0.75rem) 0; // Reset margin to prevent conflicts
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      
+      .gradient-text {
+        background: $gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-block; // Ensure gradient works properly
+      }
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(0.925rem, 1.5vw, 1.05rem);
+      color: $text-light;
+      line-height: 1.5;
+      max-width: 700px;
+      margin: 0 auto clamp(1rem, 2vw, 1.5rem) auto; // Reset margin to prevent conflicts
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: clamp(2rem, 4vw, 3rem);
+      flex-wrap: wrap;
+      
+      .stat-item {
+        text-align: center;
+        
+        .stat-value {
+          font-size: clamp(1.5rem, 2.5vw, 2rem);
+          font-weight: 800;
+          color: $primary-color;
+          margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+          font-size: 0.875rem;
+          color: $text-light;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+  }
+}
+
+// Main Content Layout - Encapsulated
+.modern-documentation-page .docs-main-content {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: clamp(2rem, 4vw, 3rem);
+  padding: clamp(2rem, 4vw, 3rem);
+  position: relative;
+  isolation: isolate;
+  
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2rem);
+    padding: clamp(1.5rem, 3vw, 2rem);
+  }
+}
+
+// Sidebar Navigation - Encapsulated
+.modern-documentation-page .docs-sidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  isolation: isolate;
+  
+  @media (max-width: $breakpoint-lg) {
+    position: static;
+  }
+}
+
+.modern-documentation-page .docs-nav {
+  background: $white;
+  border-radius: $border-radius-xl;
+  border: 1px solid rgba(26, 115, 232, 0.1);
+  box-shadow: 0 4px 20px rgba(26, 115, 232, 0.08);
+  overflow: hidden;
+  isolation: isolate;
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(26, 115, 232, 0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0; // Reset margin
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    &:hover {
+      background: rgba(26, 115, 232, 0.05);
+      
+      .nav-icon {
+        transform: scale(1.1);
+        color: $primary-color;
+      }
+    }
+    
+    &.active {
+      background: rgba(26, 115, 232, 0.1);
+      color: $primary-color;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: $gradient-primary;
+      }
+      
+      .nav-icon {
+        color: $primary-color;
+        transform: scale(1.1);
+      }
+    }
+    
+    .nav-icon {
+      color: $text-light;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-label {
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Content Area - Encapsulated
+.modern-documentation-page .docs-content {
+  min-height: 600px;
+  isolation: isolate;
+}
+
+.modern-documentation-page .docs-section {
+  background: $white;
+  border-radius: $border-radius-xl;
+  border: 1px solid rgba(26, 115, 232, 0.1);
+  box-shadow: 0 4px 20px rgba(26, 115, 232, 0.08);
+  overflow: hidden;
+  isolation: isolate;
+  
+  .section-header {
+    padding: clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid rgba(26, 115, 232, 0.1);
+    background: linear-gradient(135deg, rgba(26, 115, 232, 0.02) 0%, transparent 100%);
+    
+    h2 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      margin: 0 0 1rem 0; // Reset margin to prevent conflicts
+      color: $text-color;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.2;
+    }
+    
+    p {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      color: $text-light;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0; // Reset margin to prevent conflicts
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+  }
+}
+
+// Feature Grid - Encapsulated
+.modern-documentation-page .feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+.modern-documentation-page .feature-card {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: rgba(26, 115, 232, 0.02);
+  border-radius: $border-radius-xl;
+  border: 1px solid rgba(26, 115, 232, 0.08);
+  transition: all 0.3s ease;
+  isolation: isolate;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(26, 115, 232, 0.12);
+    border-color: rgba(26, 115, 232, 0.15);
+    
+    .feature-icon {
+      transform: scale(1.1);
+    }
+  }
+  
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(26, 115, 232, 0.1) 0%, rgba(66, 133, 244, 0.1) 100%);
+    border-radius: $border-radius-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0; // Reset margin to prevent conflicts
+    color: $text-color;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.3;
+  }
+  
+  p {
+    color: $text-light;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0; // Reset margin to prevent conflicts
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: $text-light;
+      margin-bottom: 0.5rem;
+      
+      &::before {
+        content: '✓';
+        color: $success-color;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Quick Start Section - Encapsulated
+.modern-documentation-page .quick-start-section {
+  padding: clamp(2rem, 4vw, 3rem);
+  
+  h3 {
+    font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    margin: 0 0 clamp(1.5rem, 3vw, 2rem) 0; // Reset margin to prevent conflicts
+    color: $text-color;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.2;
+  }
+}
+
+.modern-documentation-page .quick-start-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.modern-documentation-page .step {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(26, 115, 232, 0.02);
+  border-radius: $border-radius-lg;
+  border: 1px solid rgba(26, 115, 232, 0.08);
+  isolation: isolate;
+  
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background: $gradient-primary;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .step-content {
+    h4 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0; // Reset margin to prevent conflicts
+      color: $text-color;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.3;
+    }
+    
+    p {
+      color: $text-light;
+      line-height: 1.5;
+      margin: 0; // Reset margin to prevent conflicts
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+  }
+}
+
+// Authentication Section - Encapsulated
+.modern-documentation-page .auth-info {
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+.modern-documentation-page .auth-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(26, 115, 232, 0.02);
+  border-radius: $border-radius-xl;
+  border: 1px solid rgba(26, 115, 232, 0.08);
+  margin: 0 0 2rem 0; // Reset margin to prevent conflicts
+  isolation: isolate;
+  
+  .auth-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(26, 115, 232, 0.1) 0%, rgba(66, 133, 244, 0.1) 100%);
+    border-radius: $border-radius-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color;
+    flex-shrink: 0;
+  }
+  
+  .auth-content {
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem 0; // Reset margin to prevent conflicts
+      color: $text-color;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.3;
+    }
+    
+    p {
+      color: $text-light;
+      line-height: 1.6;
+      margin: 0; // Reset margin to prevent conflicts
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      
+      code {
+        background: rgba(26, 115, 232, 0.1);
+        color: $primary-color;
+        padding: 0.25rem 0.5rem;
+        border-radius: $border-radius;
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+// Security Notes - Encapsulated
+.modern-documentation-page .security-notes {
+  padding: 0 clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem);
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0; // Reset margin to prevent conflicts
+    color: $text-color;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.2;
+  }
+}
+
+.modern-documentation-page .security-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.modern-documentation-page .security-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(76, 175, 80, 0.02);
+  border-radius: $border-radius-lg;
+  border: 1px solid rgba(76, 175, 80, 0.1);
+  isolation: isolate;
+  
+  svg {
+    color: $success-color;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  
+  div {
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0; // Reset margin to prevent conflicts
+      color: $text-color;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.3;
+    }
+    
+    p {
+      color: $text-light;
+      line-height: 1.5;
+      font-size: 0.875rem;
+      margin: 0; // Reset margin to prevent conflicts
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+  }
+}
+
+// Endpoint Details - Encapsulated
+.modern-documentation-page .endpoint-details {
+  padding: clamp(2rem, 4vw, 3rem);
+  
+  .endpoint-card {
+    background: rgba(26, 115, 232, 0.02);
+    border-radius: $border-radius-xl;
+    border: 1px solid rgba(26, 115, 232, 0.08);
+    padding: 2rem;
+    margin: 0 0 2rem 0; // Reset margin to prevent conflicts
+    transition: all 0.3s ease;
+    isolation: isolate;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(26, 115, 232, 0.12);
+      border-color: rgba(26, 115, 232, 0.15);
+    }
+    
+    .endpoint-header {
+      display: flex;
+      gap: 1.5rem;
+      margin: 0 0 1.5rem 0; // Reset margin to prevent conflicts
+      
+      .endpoint-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, rgba(26, 115, 232, 0.1) 0%, rgba(66, 133, 244, 0.1) 100%);
+        border-radius: $border-radius-lg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $primary-color;
+        flex-shrink: 0;
+      }
+      
+      .endpoint-info {
+        h3 {
+          font-size: 1.25rem;
+          font-weight: 700;
+          margin: 0 0 0.5rem 0; // Reset margin to prevent conflicts
+          color: $text-color;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          line-height: 1.3;
+        }
+        
+        p {
+          color: $text-light;
+          line-height: 1.5;
+          margin: 0; // Reset margin to prevent conflicts
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+      }
+    }
+    
+    .endpoint-spec {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      
+      .method-badge {
+        padding: 0.5rem 1rem;
+        border-radius: $border-radius;
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        
+        &.post {
+          background: rgba(34, 197, 94, 0.1);
+          color: $success-color;
+          border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        
+        &.get {
+          background: rgba(26, 115, 232, 0.1);
+          color: $primary-color;
+          border: 1px solid rgba(26, 115, 232, 0.2);
+        }
+      }
+      
+      .endpoint-path {
+        background: rgba(26, 115, 232, 0.05);
+        color: $primary-color;
+        padding: 0.5rem 1rem;
+        border-radius: $border-radius;
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+        font-size: 0.875rem;
+        border: 1px solid rgba(26, 115, 232, 0.1);
+      }
+    }
+  }
+}
+
+// Code Block Styling - Encapsulated
+.modern-documentation-page .modern-code-block {
+  margin: 2rem 0;
+  background: #1a1a1a;
+  border-radius: $border-radius-xl;
+  border: 1px solid rgba(26, 115, 232, 0.2);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  isolation: isolate;
+  
+  .code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: rgba(26, 115, 232, 0.1);
+    border-bottom: 1px solid rgba(26, 115, 232, 0.2);
+    
+    .code-title {
+      font-weight: 600;
+      color: $primary-color;
+      font-size: 0.875rem;
+    }
+    
+    .code-language {
+      background: rgba(26, 115, 232, 0.2);
+      color: $primary-color;
+      padding: 0.25rem 0.75rem;
+      border-radius: $border-radius;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+  
+  .code-content {
+    position: relative;
+    
+    .code-pre {
+      margin: 0;
+      padding: 1.5rem;
+      background: #1a1a1a;
+      color: #e5e5e5;
+      font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      
+      code {
+        color: inherit;
+        background: transparent;
+        
+        &.language-json {
+          .string { color: #a3e635; }
+          .number { color: #fbbf24; }
+          .boolean { color: #60a5fa; }
+          .null { color: #f87171; }
+        }
+        
+        &.language-bash {
+          color: #10b981;
+        }
+        
+        &.language-javascript {
+          .keyword { color: #c084fc; }
+          .string { color: #a3e635; }
+          .function { color: #60a5fa; }
+        }
+        
+        &.language-python {
+          .keyword { color: #c084fc; }
+          .string { color: #a3e635; }
+          .function { color: #60a5fa; }
+        }
+      }
+    }
+    
+    .copy-code-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(26, 115, 232, 0.2);
+      border: 1px solid rgba(26, 115, 232, 0.3);
+      border-radius: $border-radius;
+      padding: 0.5rem;
+      color: $primary-color;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      
+      &:hover {
+        background: rgba(26, 115, 232, 0.3);
+        transform: scale(1.05);
+      }
+      
+      &.copied {
+        background: rgba(34, 197, 94, 0.2);
+        border-color: rgba(34, 197, 94, 0.3);
+        color: $success-color;
+      }
+    }
+  }
+}
+
+// Error Codes Section - Encapsulated
+.modern-documentation-page .error-codes-section {
+  padding: clamp(2rem, 4vw, 3rem);
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0; // Reset margin to prevent conflicts
+    color: $text-color;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.2;
+  }
+}
+
+.modern-documentation-page .error-codes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 0 0 2rem 0; // Reset margin to prevent conflicts
+}
+
+.modern-documentation-page .error-code-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: $border-radius-lg;
+  border: 1px solid;
+  isolation: isolate;
+  
+  &.success {
+    background: rgba(34, 197, 94, 0.05);
+    border-color: rgba(34, 197, 94, 0.2);
+    
+    .status-code {
+      background: rgba(34, 197, 94, 0.1);
+      color: $success-color;
+    }
+  }
+  
+  &.error {
+    background: rgba(239, 68, 68, 0.05);
+    border-color: rgba(239, 68, 68, 0.2);
+    
+    .status-code {
+      background: rgba(239, 68, 68, 0.1);
+      color: $danger-color;
+    }
+  }
+  
+  &.warning {
+    background: rgba(245, 158, 11, 0.05);
+    border-color: rgba(245, 158, 11, 0.2);
+    
+    .status-code {
+      background: rgba(245, 158, 11, 0.1);
+      color: $warning-color;
+    }
+  }
+  
+  .status-code {
+    width: 60px;
+    height: 60px;
+    border-radius: $border-radius-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+  }
+  
+  .status-text {
+    h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0; // Reset margin to prevent conflicts
+      color: $text-color;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.3;
+    }
+    
+    p {
+      color: $text-light;
+      font-size: 0.875rem;
+      line-height: 1.4;
+      margin: 0; // Reset margin to prevent conflicts
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+  }
+}
+
+// Responsive Design - Encapsulated
+@media (max-width: $breakpoint-lg) {
+  .modern-documentation-page .docs-main-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .modern-documentation-page .docs-sidebar {
+    order: -1;
+  }
+  
+  .modern-documentation-page .docs-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    
+    .nav-item {
+      border-bottom: none;
+      border-right: 1px solid rgba(26, 115, 232, 0.08);
+      
+      &:last-child {
+        border-right: none;
+      }
+      
+      &.active::before {
+        left: 0;
+        right: 0;
+        top: auto;
+        bottom: 0;
+        width: auto;
+        height: 3px;
+      }
+    }
+  }
+  
+  .modern-documentation-page .feature-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modern-documentation-page .quick-start-steps {
+    grid-template-columns: 1fr;
+  }
+  
+  .modern-documentation-page .error-codes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .modern-documentation-page .docs-nav {
+    grid-template-columns: 1fr;
+    
+    .nav-item {
+      border-right: none;
+      border-bottom: 1px solid rgba(26, 115, 232, 0.08);
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  
+  .modern-documentation-page .auth-card {
+    flex-direction: column;
+    text-align: center;
+    
+    .auth-icon {
+      align-self: center;
+    }
+  }
+  
+  .modern-documentation-page .step {
+    flex-direction: column;
+    text-align: center;
+    
+    .step-number {
+      align-self: center;
+    }
+  }
+  
+  .modern-documentation-page .error-code-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+// Focus states for accessibility - Encapsulated
+.modern-documentation-page .nav-item:focus,
+.modern-documentation-page .copy-code-btn:focus {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}
+
+// Reduced motion support - Encapsulated
+@media (prefers-reduced-motion: reduce) {
+  .modern-documentation-page *,
+  .modern-documentation-page *::before,
+  .modern-documentation-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

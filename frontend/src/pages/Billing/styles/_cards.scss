@@ -1,0 +1,445 @@
+@use '../../../styles/variables' as *;
+
+// Shared Billing Card Styles
+.billing-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-radius: $border-radius-2xl;
+  border: 1px solid rgba(26, 115, 232, 0.1);
+  box-shadow:
+    0 8px 25px rgba(26, 115, 232, 0.06),
+    0 3px 10px rgba(26, 115, 232, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 16px 40px rgba(26, 115, 232, 0.1),
+      0 6px 16px rgba(26, 115, 232, 0.06);
+    border-color: rgba(26, 115, 232, 0.15);
+  }
+}
+
+.billing-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.5rem, 3vw, 2rem);
+  border-bottom: 1px solid rgba(26, 115, 232, 0.06);
+  background: linear-gradient(135deg, rgba(26, 115, 232, 0.015) 0%, rgba(66, 133, 244, 0.01) 100%);
+
+  .card-title-group {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: $border-radius-lg;
+      background: linear-gradient(135deg, rgba(26, 115, 232, 0.08) 0%, rgba(66, 133, 244, 0.08) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $primary-color;
+      flex-shrink: 0;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    h2 {
+      margin: 0 0 0.125rem 0;
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-weight: 700;
+      color: $text-color;
+    }
+
+    p {
+      margin: 0;
+      font-size: $font-size-sm;
+      color: $text-light;
+    }
+  }
+
+  .card-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .total-label {
+      font-size: $font-size-xs;
+      color: $text-muted;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .total-value {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      font-weight: 800;
+      color: $text-color;
+    }
+  }
+
+  .card-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid rgba(26, 115, 232, 0.15);
+    border-radius: $border-radius-lg;
+    padding: 0.5rem 1rem;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $primary-color;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      background: rgba(26, 115, 232, 0.05);
+      border-color: rgba(26, 115, 232, 0.25);
+      transform: translateY(-1px);
+    }
+
+    &.primary {
+      background: $gradient-primary;
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
+
+      &:hover {
+        box-shadow: 0 6px 20px rgba(26, 115, 232, 0.35);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+.billing-card-content {
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.5rem, 3vw, 2rem);
+}
+
+// Cost Breakdown Specific
+.cost-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.25rem);
+}
+
+.cost-item {
+  .cost-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    .cost-item-name {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+
+      .cost-color-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: $border-radius-full;
+        flex-shrink: 0;
+      }
+
+      span {
+        font-weight: 600;
+        font-size: $font-size-sm;
+        color: $text-color;
+      }
+    }
+
+    .cost-item-values {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      .cost-item-amount {
+        font-weight: 700;
+        font-size: $font-size-sm;
+        color: $text-color;
+      }
+
+      .cost-item-percent {
+        font-size: $font-size-xs;
+        color: $text-muted;
+        font-weight: 500;
+        background: rgba(26, 115, 232, 0.06);
+        padding: 0.125rem 0.5rem;
+        border-radius: $border-radius-full;
+      }
+    }
+  }
+
+  .cost-item-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(26, 115, 232, 0.06);
+    border-radius: $border-radius-full;
+    overflow: hidden;
+    margin-bottom: 0.375rem;
+
+    .cost-item-bar-fill {
+      height: 100%;
+      border-radius: $border-radius-full;
+      transition: width 1s ease;
+    }
+  }
+
+  .cost-item-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .cost-item-requests {
+      font-size: $font-size-xs;
+      color: $text-muted;
+      font-weight: 500;
+    }
+
+    .cost-item-trend {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: $font-size-xs;
+      font-weight: 600;
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      &.up {
+        color: $danger-color;
+      }
+
+      &.down {
+        color: $success-color;
+      }
+    }
+  }
+}
+
+// Service Deductions Table
+.service-deductions-table {
+  .service-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(26, 115, 232, 0.08);
+    margin-bottom: 0.5rem;
+
+    span {
+      font-size: $font-size-xs;
+      font-weight: 600;
+      color: $text-muted;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .service-row {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(26, 115, 232, 0.04);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .service-row-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-name-cell {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+
+      .service-name-info {
+        display: flex;
+        flex-direction: column;
+
+        .service-name {
+          font-weight: 600;
+          font-size: $font-size-sm;
+          color: $text-color;
+        }
+
+        .service-endpoint {
+          font-size: $font-size-xs;
+          color: $text-muted;
+          font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+      }
+    }
+
+    .service-credits-per {
+      .credits-badge {
+        display: inline-block;
+        padding: 0.2rem 0.5rem;
+        background: rgba(26, 115, 232, 0.08);
+        color: $primary-color;
+        border-radius: $border-radius-full;
+        font-size: $font-size-xs;
+        font-weight: 700;
+      }
+    }
+
+    .service-requests {
+      font-size: $font-size-sm;
+      font-weight: 600;
+      color: $text-color;
+    }
+
+    .service-total-credits {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .credits-used-value {
+        font-weight: 700;
+        font-size: $font-size-sm;
+        color: $text-color;
+      }
+
+      .credits-used-percent {
+        font-size: $font-size-xs;
+        color: $text-muted;
+        background: rgba(26, 115, 232, 0.06);
+        padding: 0.125rem 0.375rem;
+        border-radius: $border-radius-full;
+      }
+    }
+
+    .service-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(26, 115, 232, 0.06);
+      border-radius: $border-radius-full;
+      overflow: hidden;
+
+      .service-bar-fill {
+        height: 100%;
+        border-radius: $border-radius-full;
+        transition: width 1s ease;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    .service-table-header {
+      display: none;
+    }
+
+    .service-row .service-row-main {
+      grid-template-columns: 1fr;
+      gap: 0.375rem;
+    }
+  }
+}
+
+// Daily Cost Chart
+.daily-cost-chart {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  padding-top: clamp(1.25rem, 2.5vw, 1.5rem);
+  border-top: 1px solid rgba(26, 115, 232, 0.06);
+
+  h3 {
+    margin: 0 0 clamp(1rem, 2vw, 1.25rem) 0;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    font-weight: 700;
+    color: $text-color;
+  }
+
+  .chart-container {
+    display: flex;
+    align-items: flex-end;
+    gap: clamp(0.375rem, 0.75vw, 0.5rem);
+    height: 140px;
+    padding: 0.5rem;
+    background: linear-gradient(135deg, rgba(26, 115, 232, 0.02) 0%, rgba(66, 133, 244, 0.01) 100%);
+    border-radius: $border-radius-lg;
+    border: 1px solid rgba(26, 115, 232, 0.04);
+
+    .chart-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+      height: 100%;
+
+      .chart-bar-wrapper {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        .chart-bar {
+          width: 75%;
+          background: $gradient-primary;
+          border-radius: 4px 4px 0 0;
+          min-height: 4px;
+          position: relative;
+          transition: all 0.3s ease;
+          cursor: pointer;
+
+          &:hover {
+            filter: brightness(1.1);
+            transform: scaleY(1.02);
+
+            .chart-tooltip {
+              opacity: 1;
+              transform: translateX(-50%) translateY(-4px);
+            }
+          }
+
+          .chart-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 0.25rem 0.625rem;
+            border-radius: 6px;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            z-index: 10;
+          }
+        }
+      }
+
+      .chart-label {
+        font-size: clamp(0.5625rem, 0.9vw, 0.6875rem);
+        color: $text-muted;
+        font-weight: 500;
+        text-align: center;
+        white-space: nowrap;
+      }
+    }
+  }
+}

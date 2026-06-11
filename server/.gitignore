@@ -1,0 +1,49 @@
+# Dependency directories
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build output
+dist/
+build/
+
+# Coverage directory
+coverage/
+
+# Logs
+logs/
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.swp
+*.swo
+.tmp/
+
+# Geocoder model files (hosted on S3, downloaded at runtime)
+# These large binary files should NOT be in the git repo
+src/Geocoder/*.index
+src/Geocoder/*.npy
+src/Geocoder/*.npz
+src/Geocoder/*.pkl
+src/Geocoder/*.backup
+src/Geocoder/*.safetensors
+src/Geocoder/sentence_embedder/
+src/Geocoder/.geocoder_manifest.json

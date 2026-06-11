@@ -1,0 +1,236 @@
+// Signup Sidebar Styles - Clean Blue Theme
+// Uses brand colors: #1a73e8, #4285f4, #0d47a1
+// ================================================
+@use 'variables' as *;
+
+.signup-sidebar {
+  position: fixed;
+  top: 60px; // Account for header height
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $signup-spacing-2xl;
+  
+  @media (max-width: $signup-breakpoint-lg) {
+    display: none;
+  }
+}
+
+// Background
+.sidebar-bg {
+  position: absolute;
+  inset: 0;
+  
+  .bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #0d47a1 0%, #1a73e8 50%, #4285f4 100%);
+  }
+  
+  .bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+  
+  .bg-shapes {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    
+    .shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 50%;
+      
+      &.shape-1 {
+        width: 400px;
+        height: 400px;
+        top: -150px;
+        right: -100px;
+        animation: float-slow 20s ease-in-out infinite;
+      }
+      
+      &.shape-2 {
+        width: 250px;
+        height: 250px;
+        bottom: -80px;
+        left: -60px;
+        animation: float-slow 25s ease-in-out infinite reverse;
+      }
+      
+      &.shape-3 {
+        width: 150px;
+        height: 150px;
+        top: 40%;
+        left: 20%;
+        animation: float-slow 15s ease-in-out infinite;
+      }
+    }
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(15px, 15px) scale(1.05);
+  }
+}
+
+// Content
+.sidebar-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 380px;
+  height: 100%;
+  max-height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+// Slide Container
+.slide-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  
+  &.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  &.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: $signup-spacing-xl;
+  color: white;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.slide-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 $signup-spacing-xs 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: white;
+}
+
+.slide-subtitle {
+  font-size: $signup-font-size-base;
+  opacity: 0.9;
+  margin: 0 0 $signup-spacing-lg 0;
+  font-weight: 500;
+}
+
+.slide-description {
+  font-size: $signup-font-size-sm;
+  opacity: 0.75;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 320px;
+}
+
+// Bottom Section
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+// Slide Dots
+.slide-dots {
+  display: flex;
+  justify-content: center;
+  gap: $signup-spacing-sm;
+  margin-bottom: $signup-spacing-xl;
+  
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+    
+    &.active {
+      background: white;
+      width: 24px;
+      border-radius: 4px;
+    }
+  }
+}
+
+// Stats
+.sidebar-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $signup-spacing-lg;
+  padding: $signup-spacing-lg;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: $signup-radius-lg;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    .stat-number {
+      font-size: $signup-font-size-lg;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: $signup-spacing-xs;
+    }
+    
+    .stat-text {
+      font-size: $signup-font-size-xs;
+      color: white;
+      opacity: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+  
+  .stat-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+}

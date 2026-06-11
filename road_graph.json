@@ -1,0 +1,260 @@
+{
+  "version": "v1.0-test",
+  "createdAt": "2026-03-13T01:01:40.163045",
+  "region": "kuwait",
+  "nodes": [
+    {
+      "id": "n_0",
+      "lat": 29.3759,
+      "lon": 47.9774,
+      "type": "intersection",
+      "visitCount": 100
+    },
+    {
+      "id": "n_1",
+      "lat": 29.365,
+      "lon": 47.98,
+      "type": "intersection",
+      "visitCount": 80
+    },
+    {
+      "id": "n_2",
+      "lat": 29.35,
+      "lon": 47.985,
+      "type": "intersection",
+      "visitCount": 90
+    },
+    {
+      "id": "n_3",
+      "lat": 29.34,
+      "lon": 47.99,
+      "type": "intersection",
+      "visitCount": 70
+    },
+    {
+      "id": "n_4",
+      "lat": 29.33,
+      "lon": 47.995,
+      "type": "intersection",
+      "visitCount": 85
+    },
+    {
+      "id": "n_5",
+      "lat": 29.32,
+      "lon": 48.0,
+      "type": "intersection",
+      "visitCount": 75
+    },
+    {
+      "id": "n_6",
+      "lat": 29.31,
+      "lon": 48.005,
+      "type": "intersection",
+      "visitCount": 65
+    },
+    {
+      "id": "n_7",
+      "lat": 29.3,
+      "lon": 48.01,
+      "type": "intersection",
+      "visitCount": 95
+    },
+    {
+      "id": "n_8",
+      "lat": 29.2919,
+      "lon": 47.9774,
+      "type": "intersection",
+      "visitCount": 110
+    },
+    {
+      "id": "n_9",
+      "lat": 29.28,
+      "lon": 47.97,
+      "type": "intersection",
+      "visitCount": 60
+    },
+    {
+      "id": "n_10",
+      "lat": 29.36,
+      "lon": 48.02,
+      "type": "intersection",
+      "visitCount": 55
+    },
+    {
+      "id": "n_11",
+      "lat": 29.345,
+      "lon": 48.015,
+      "type": "intersection",
+      "visitCount": 50
+    },
+    {
+      "id": "n_12",
+      "lat": 29.325,
+      "lon": 48.025,
+      "type": "intersection",
+      "visitCount": 45
+    },
+    {
+      "id": "n_13",
+      "lat": 29.305,
+      "lon": 48.03,
+      "type": "intersection",
+      "visitCount": 40
+    },
+    {
+      "id": "n_14",
+      "lat": 29.295,
+      "lon": 48.035,
+      "type": "intersection",
+      "visitCount": 35
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_0",
+      "target": "n_1",
+      "distanceMeters": 1250,
+      "avgSpeedKmh": 45,
+      "roadType": "primary"
+    },
+    {
+      "source": "n_1",
+      "target": "n_2",
+      "distanceMeters": 1800,
+      "avgSpeedKmh": 50,
+      "roadType": "primary"
+    },
+    {
+      "source": "n_2",
+      "target": "n_3",
+      "distanceMeters": 1200,
+      "avgSpeedKmh": 40,
+      "roadType": "secondary"
+    },
+    {
+      "source": "n_3",
+      "target": "n_4",
+      "distanceMeters": 1100,
+      "avgSpeedKmh": 45,
+      "roadType": "secondary"
+    },
+    {
+      "source": "n_4",
+      "target": "n_5",
+      "distanceMeters": 1300,
+      "avgSpeedKmh": 50,
+      "roadType": "primary"
+    },
+    {
+      "source": "n_5",
+      "target": "n_6",
+      "distanceMeters": 1150,
+      "avgSpeedKmh": 45,
+      "roadType": "secondary"
+    },
+    {
+      "source": "n_6",
+      "target": "n_7",
+      "distanceMeters": 1250,
+      "avgSpeedKmh": 40,
+      "roadType": "secondary"
+    },
+    {
+      "source": "n_7",
+      "target": "n_8",
+      "distanceMeters": 1400,
+      "avgSpeedKmh": 50,
+      "roadType": "primary"
+    },
+    {
+      "source": "n_0",
+      "target": "n_10",
+      "distanceMeters": 2500,
+      "avgSpeedKmh": 60,
+      "roadType": "highway"
+    },
+    {
+      "source": "n_10",
+      "target": "n_11",
+      "distanceMeters": 1800,
+      "avgSpeedKmh": 55,
+      "roadType": "primary"
+    },
+    {
+      "source": "n_11",
+      "target": "n_12",
+      "distanceMeters": 2200,
+      "avgSpeedKmh": 50,
+      "roadType": "primary"
+    },
+    {
+      "source": "n_12",
+      "target": "n_13",
+      "distanceMeters": 2000,
+      "avgSpeedKmh": 45,
+      "roadType": "secondary"
+    },
+    {
+      "source": "n_13",
+      "target": "n_14",
+      "distanceMeters": 1500,
+      "avgSpeedKmh": 40,
+      "roadType": "secondary"
+    },
+    {
+      "source": "n_14",
+      "target": "n_8",
+      "distanceMeters": 1800,
+      "avgSpeedKmh": 45,
+      "roadType": "primary"
+    },
+    {
+      "source": "n_1",
+      "target": "n_10",
+      "distanceMeters": 2800,
+      "avgSpeedKmh": 55,
+      "roadType": "primary"
+    },
+    {
+      "source": "n_2",
+      "target": "n_11",
+      "distanceMeters": 2400,
+      "avgSpeedKmh": 50,
+      "roadType": "secondary"
+    },
+    {
+      "source": "n_4",
+      "target": "n_12",
+      "distanceMeters": 2100,
+      "avgSpeedKmh": 45,
+      "roadType": "secondary"
+    },
+    {
+      "source": "n_6",
+      "target": "n_13",
+      "distanceMeters": 1900,
+      "avgSpeedKmh": 40,
+      "roadType": "secondary"
+    },
+    {
+      "source": "n_8",
+      "target": "n_9",
+      "distanceMeters": 1300,
+      "avgSpeedKmh": 35,
+      "roadType": "residential"
+    },
+    {
+      "source": "n_9",
+      "target": "n_0",
+      "distanceMeters": 9500,
+      "avgSpeedKmh": 50,
+      "roadType": "primary"
+    }
+  ],
+  "statistics": {
+    "nodeCount": 15,
+    "edgeCount": 20,
+    "avgDegree": 2.6666666666666665,
+    "dataSourceCount": 0
+  }
+}

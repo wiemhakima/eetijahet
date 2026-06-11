@@ -1,0 +1,282 @@
+// Signup Page Layout Styles
+// ================================================
+@use 'variables' as *;
+
+.signup-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: $signup-font-family;
+  background-color: $signup-bg-primary;
+  padding-top: 60px; // Account for fixed header
+}
+
+// Full-width Page Header Bar
+.signup-page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $signup-spacing-md $signup-spacing-xl;
+  background-color: $signup-bg-primary;
+  border-bottom: 1px solid $signup-border;
+  
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $signup-spacing-sm;
+    text-decoration: none;
+    color: $signup-text-primary;
+    font-weight: 600;
+    font-size: $signup-font-size-lg;
+    transition: color $signup-transition-fast;
+    
+    svg {
+      color: $signup-primary;
+      width: 28px;
+      height: 28px;
+    }
+    
+    &:hover {
+      color: $signup-primary;
+    }
+  }
+  
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $signup-spacing-md;
+  }
+  
+  &__text {
+    font-size: $signup-font-size-sm;
+    color: $signup-text-secondary;
+    
+    @media (max-width: $signup-breakpoint-sm) {
+      display: none;
+    }
+  }
+  
+  &__link {
+    font-size: $signup-font-size-sm;
+    font-weight: 500;
+    color: $signup-primary;
+    text-decoration: none;
+    padding: $signup-spacing-sm $signup-spacing-md;
+    border-radius: $signup-radius;
+    border: 1px solid $signup-primary;
+    transition: all $signup-transition-fast;
+    
+    &:hover {
+      background-color: $signup-primary;
+      color: white;
+    }
+  }
+  
+  @media (max-width: $signup-breakpoint-md) {
+    padding: $signup-spacing-md $signup-spacing-lg;
+  }
+}
+
+// Left Panel - Form Section
+.signup-form-panel {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  background-color: $signup-bg-primary;
+  overflow-y: auto;
+  
+  @media (max-width: $signup-breakpoint-lg) {
+    position: relative;
+    top: 0;
+    width: 100%;
+    min-height: calc(100vh - 60px);
+  }
+}
+
+// Form Wrapper
+.signup-form-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $signup-spacing-xl;
+  
+  @media (max-width: $signup-breakpoint-md) {
+    padding: $signup-spacing-lg;
+  }
+}
+
+.signup-form-content {
+  width: 100%;
+  max-width: 420px;
+}
+
+// Progress Indicator
+.progress-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $signup-spacing-2xl;
+  position: relative;
+  
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $signup-spacing-sm;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    
+    .step-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: $signup-radius-full;
+      background-color: $signup-bg-secondary;
+      border: 2px solid $signup-border;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: $signup-font-size-sm;
+      font-weight: 600;
+      color: $signup-text-secondary;
+      transition: all $signup-transition-base;
+      
+      svg {
+        width: 14px;
+        height: 14px;
+        stroke: white;
+      }
+    }
+    
+    .step-label {
+      font-size: $signup-font-size-xs;
+      color: $signup-text-muted;
+      font-weight: 500;
+      transition: color $signup-transition-base;
+    }
+    
+    &.active {
+      .step-circle {
+        background-color: $signup-primary;
+        border-color: $signup-primary;
+        color: white;
+      }
+      
+      .step-label {
+        color: $signup-primary;
+      }
+    }
+    
+    &.completed {
+      .step-circle {
+        background-color: $signup-success;
+        border-color: $signup-success;
+      }
+      
+      .step-label {
+        color: $signup-success;
+      }
+    }
+  }
+  
+  .progress-line {
+    position: absolute;
+    top: 18px;
+    left: 50px;
+    right: 50px;
+    height: 2px;
+    background-color: $signup-border;
+    z-index: 0;
+
+    .progress-fill {
+      height: 100%;
+      background-color: $signup-success;
+      transition: width $signup-transition-slow;
+    }
+  }
+}
+
+// Form Header
+.form-header {
+  text-align: center;
+  margin-bottom: $signup-spacing-xl;
+  
+  h1 {
+    font-size: $signup-font-size-2xl;
+    font-weight: 700;
+    color: $signup-text-primary;
+    margin: 0 0 $signup-spacing-sm 0;
+    letter-spacing: -0.025em;
+  }
+  
+  p {
+    font-size: $signup-font-size-base;
+    color: $signup-text-secondary;
+    margin: 0;
+  }
+}
+
+// Footer
+.signup-footer {
+  padding: $signup-spacing-lg $signup-spacing-xl;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid $signup-border;
+  
+  p {
+    margin: 0;
+    font-size: $signup-font-size-xs;
+    color: $signup-text-muted;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: $signup-spacing-lg;
+    
+    a {
+      font-size: $signup-font-size-xs;
+      color: $signup-text-muted;
+      text-decoration: none;
+      transition: color $signup-transition-fast;
+      
+      &:hover {
+        color: $signup-primary;
+      }
+    }
+  }
+  
+  @media (max-width: $signup-breakpoint-sm) {
+    flex-direction: column;
+    gap: $signup-spacing-sm;
+    text-align: center;
+  }
+}
+
+// Sign In Link
+.signin-link {
+  text-align: center;
+  margin-top: $signup-spacing-xl;
+  font-size: $signup-font-size-sm;
+  color: $signup-text-secondary;
+  
+  a {
+    color: $signup-primary;
+    text-decoration: none;
+    font-weight: 500;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

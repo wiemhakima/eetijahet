@@ -1,0 +1,414 @@
+@use 'sass:color';
+@use '../../styles/variables' as *;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// AWS-Style Dashboard — Clean, flat, no shadows, modern simplicity
+// ─────────────────────────────────────────────────────────────────────────────
+
+// AWS-like color tokens
+$aws-bg: #f2f3f3;
+$aws-card-bg: #ffffff;
+$aws-border: #d5dbdb;
+$aws-border-light: #e9ecef;
+$aws-text-primary: #16191f;
+$aws-text-secondary: #545b64;
+$aws-text-muted: #687078;
+$aws-link: #0972d3;
+$aws-link-hover: #033160;
+$aws-blue: #0972d3;
+$aws-green: #037f0c;
+$aws-orange: #d97706;
+$aws-teal: #0d7377;
+$aws-red: #d13212;
+
+// ─── Layout ─────────────────────────────────────────────────────────────────
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: $aws-bg;
+  color: $aws-text-primary;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.dashboard-main {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .sidebar--collapsed ~ & {
+    margin-left: 72px;
+  }
+}
+
+.dashboard-content {
+  padding: 24px;
+  flex: 1;
+}
+
+.dashboard-home {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// ─── Welcome Banner ─────────────────────────────────────────────────────────
+
+.aws-welcome {
+  background: $aws-card-bg;
+  border: 1px solid $aws-border;
+  border-radius: 8px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  &__title {
+    font-size: 22px;
+    font-weight: 700;
+    color: $aws-text-primary;
+    margin: 0 0 6px;
+    line-height: 1.3;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: $aws-text-secondary;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+}
+
+// ─── Buttons ────────────────────────────────────────────────────────────────
+
+.aws-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  font-family: inherit;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &--primary {
+    background: $aws-blue;
+    color: #ffffff;
+    border-color: $aws-blue;
+
+    &:hover {
+      background: color.adjust($aws-blue, $lightness: -8%);
+      border-color: color.adjust($aws-blue, $lightness: -8%);
+    }
+
+    &:active {
+      background: color.adjust($aws-blue, $lightness: -12%);
+    }
+  }
+
+  &--outline {
+    background: $aws-card-bg;
+    color: $aws-text-primary;
+    border-color: $aws-border;
+
+    &:hover {
+      background: #fafafa;
+      border-color: #aab7b8;
+    }
+  }
+}
+
+.aws-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: $aws-link;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+
+  &:hover {
+    color: $aws-link-hover;
+    text-decoration: underline;
+  }
+}
+
+// ─── Stat Cards ─────────────────────────────────────────────────────────────
+
+.aws-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.aws-stat-card {
+  background: $aws-card-bg;
+  border: 1px solid $aws-border;
+  border-radius: 8px;
+  padding: 20px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    &--blue {
+      background: #f2f8fd;
+      color: $aws-blue;
+    }
+
+    &--green {
+      background: #f2fcf3;
+      color: $aws-green;
+    }
+
+    &--orange {
+      background: #fffbf0;
+      color: $aws-orange;
+    }
+
+    &--teal {
+      background: #f0fafb;
+      color: $aws-teal;
+    }
+
+    &--red {
+      background: #fff2f2;
+      color: $aws-red;
+    }
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 500;
+    color: $aws-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  &__value {
+    font-size: 28px;
+    font-weight: 700;
+    color: $aws-text-primary;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  &__change {
+    font-size: 12px;
+    font-weight: 500;
+
+    &--positive {
+      color: $aws-green;
+    }
+
+    &--negative {
+      color: $aws-red;
+    }
+
+    &--neutral {
+      color: $aws-text-muted;
+    }
+  }
+}
+
+// ─── Widgets ────────────────────────────────────────────────────────────────
+
+.aws-widgets {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 16px;
+}
+
+.aws-widget {
+  background: $aws-card-bg;
+  border: 1px solid $aws-border;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid $aws-border-light;
+  }
+
+  &__title-group {
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: $aws-text-primary;
+    margin: 0 0 2px;
+    line-height: 1.3;
+  }
+
+  &__desc {
+    font-size: 13px;
+    color: $aws-text-muted;
+    margin: 0;
+  }
+
+  &__body {
+    padding: 20px;
+  }
+
+  &--large {
+    grid-column: 1;
+  }
+
+  &--side {
+    grid-column: 2;
+  }
+}
+
+// ─── Dashboard Message (404, etc) ───────────────────────────────────────────
+
+.dashboard-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  font-size: 16px;
+  color: $aws-text-muted;
+}
+
+// ─── Responsive ─────────────────────────────────────────────────────────────
+
+@media (max-width: $breakpoint-xl) {
+  .aws-widgets {
+    grid-template-columns: 1fr;
+  }
+
+  .aws-widget--large,
+  .aws-widget--side {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .dashboard-main {
+    margin-left: 72px;
+
+    .sidebar--collapsed ~ & {
+      margin-left: 260px;
+    }
+  }
+
+  .aws-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .dashboard-main {
+    margin-left: 0;
+
+    .sidebar--collapsed ~ & {
+      margin-left: 0;
+    }
+  }
+
+  .dashboard-content {
+    padding: 16px;
+  }
+
+  .aws-welcome {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .aws-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .aws-stat-card__value {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .dashboard-content {
+    padding: 12px;
+  }
+
+  .dashboard-home {
+    gap: 12px;
+  }
+
+  .aws-welcome {
+    padding: 16px;
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__actions {
+      flex-direction: column;
+      width: 100%;
+
+      .aws-btn {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// ─── Focus / Accessibility ──────────────────────────────────────────────────
+
+.aws-btn:focus-visible,
+.aws-link-btn:focus-visible {
+  outline: 2px solid $aws-blue;
+  outline-offset: 2px;
+}
+
+// ─── Reduced Motion ─────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-main {
+    transition: none;
+  }
+}

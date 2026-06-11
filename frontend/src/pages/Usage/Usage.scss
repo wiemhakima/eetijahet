@@ -1,0 +1,885 @@
+@use '../../styles/variables' as *;
+@use '../../styles/aws-hero' as *;
+@use "sass:color";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Usage Page — AWS-style flat body, hero preserved
+// ─────────────────────────────────────────────────────────────────────────────
+
+// AWS-like color tokens
+$aws-bg: #f2f3f3;
+$aws-card-bg: #ffffff;
+$aws-border: #d5dbdb;
+$aws-border-light: #e9ecef;
+$aws-text-primary: #16191f;
+$aws-text-secondary: #545b64;
+$aws-text-muted: #687078;
+$aws-link: #0972d3;
+$aws-blue: #0972d3;
+$aws-green: #037f0c;
+$aws-red: #d13212;
+
+.usage-page {
+  min-height: 100vh;
+  background: $aws-bg;
+  color: $aws-text-primary;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  // ── Hero (PRESERVED — uses aws-hero mixin) ──────────────────
+  @include aws-hero('.usage-hero');
+
+  // ── Actions Bar ─────────────────────────────────────────────
+  .usage-actions-bar {
+    margin: 20px 24px;
+    background: $aws-card-bg;
+    border: 1px solid $aws-border;
+    border-radius: 8px;
+
+    .actions-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+
+      @media (max-width: $breakpoint-lg) {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+    }
+
+    .time-range-selector {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      svg {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $aws-text-muted;
+        z-index: 1;
+        width: 18px;
+        height: 18px;
+      }
+
+      select {
+        background: $aws-card-bg;
+        border: 1px solid $aws-border;
+        border-radius: 4px;
+        padding: 8px 36px 8px 36px;
+        font-size: 13px;
+        font-weight: 500;
+        min-width: 180px;
+        appearance: none;
+        cursor: pointer;
+        color: $aws-text-primary;
+        transition: border-color 0.15s ease;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 8px center;
+        background-repeat: no-repeat;
+        background-size: 1.25em 1.25em;
+
+        &:focus {
+          outline: none;
+          border-color: $aws-blue;
+          box-shadow: 0 0 0 1px $aws-blue;
+        }
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+
+      @media (max-width: $breakpoint-lg) {
+        justify-content: center;
+      }
+    }
+
+    .btn-refresh,
+    .btn-download {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 4px;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      border: 1px solid transparent;
+      font-family: inherit;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .btn-refresh {
+      background: $aws-blue;
+      color: #ffffff;
+      border-color: $aws-blue;
+
+      &:hover {
+        background: color.adjust($aws-blue, $lightness: -8%);
+      }
+
+      .loading-dot {
+        width: 5px;
+        height: 5px;
+        background: #ffffff;
+        border-radius: 50%;
+        margin-left: 4px;
+        animation: awsPulse 1.5s ease-in-out infinite;
+      }
+    }
+
+    .btn-download {
+      background: $aws-card-bg;
+      border-color: $aws-border;
+      color: $aws-text-primary;
+
+      &:hover {
+        background: #fafafa;
+        border-color: #aab7b8;
+      }
+    }
+  }
+
+  // ── Content ─────────────────────────────────────────────────
+  .usage-content {
+    margin: 0 24px 24px;
+    display: grid;
+    gap: 16px;
+  }
+
+  // ── Cards ───────────────────────────────────────────────────
+  .usage-card {
+    background: $aws-card-bg;
+    border: 1px solid $aws-border;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid $aws-border-light;
+      cursor: pointer;
+
+      &:hover {
+        background: #fafafa;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: $aws-text-primary;
+      }
+
+      .btn-expand {
+        background: none;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        color: $aws-text-muted;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          color: $aws-text-primary;
+        }
+
+        &.expanded {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .card-content {
+      overflow: hidden;
+    }
+  }
+
+  // ── Credits Overview ────────────────────────────────────────
+  .credits-overview {
+    .credits-summary {
+      padding: 20px;
+
+      .credits-meter {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 28px;
+        align-items: center;
+
+        @media (max-width: $breakpoint-lg) {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 20px;
+        }
+
+        .meter-visual {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .meter-content {
+            position: absolute;
+            text-align: center;
+
+            .meter-percentage {
+              font-size: 28px;
+              font-weight: 700;
+              color: $aws-blue;
+              line-height: 1;
+            }
+
+            .meter-label {
+              font-size: 13px;
+              color: $aws-text-muted;
+              font-weight: 500;
+              margin-top: 4px;
+            }
+          }
+        }
+
+        .meter-details {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+
+          @media (max-width: $breakpoint-md) {
+            grid-template-columns: 1fr;
+          }
+
+          .meter-detail {
+            padding: 14px;
+            background: #fafafa;
+            border-radius: 6px;
+            border: 1px solid $aws-border-light;
+
+            .detail-label {
+              font-size: 12px;
+              color: $aws-text-muted;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.03em;
+              margin-bottom: 4px;
+            }
+
+            .detail-value {
+              font-size: 18px;
+              font-weight: 700;
+              color: $aws-text-primary;
+            }
+          }
+        }
+      }
+    }
+
+    .credits-history {
+      padding: 0 20px 20px;
+      border-top: 1px solid $aws-border-light;
+
+      h3 {
+        margin: 16px 0 12px;
+        font-size: 14px;
+        font-weight: 700;
+        color: $aws-text-primary;
+      }
+    }
+  }
+
+  // ── Requests Overview ───────────────────────────────────────
+  .requests-overview {
+    .requests-summary {
+      padding: 20px;
+
+      .summary-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+
+        .metric-card {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 16px;
+          background: #fafafa;
+          border-radius: 6px;
+          border: 1px solid $aws-border-light;
+
+          .metric-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 6px;
+            background: $aws-card-bg;
+            border: 1px solid $aws-border-light;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+          }
+
+          .metric-content {
+            .metric-value {
+              font-size: 22px;
+              font-weight: 700;
+              color: $aws-text-primary;
+              line-height: 1;
+              margin-bottom: 4px;
+            }
+
+            .metric-label {
+              font-size: 13px;
+              color: $aws-text-muted;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+
+    .requests-history {
+      padding: 0 20px 20px;
+      border-top: 1px solid $aws-border-light;
+
+      h3 {
+        margin: 16px 0 12px;
+        font-size: 14px;
+        font-weight: 700;
+        color: $aws-text-primary;
+      }
+    }
+  }
+
+  // ── Model Usage ─────────────────────────────────────────────
+  .model-usage {
+    .models-table-container {
+      padding: 20px;
+      overflow-x: auto;
+
+      .models-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th,
+        td {
+          padding: 10px 14px;
+          text-align: left;
+          border-bottom: 1px solid $aws-border-light;
+        }
+
+        th {
+          font-weight: 600;
+          color: $aws-text-muted;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.03em;
+          background: #fafafa;
+        }
+
+        td {
+          font-size: 13px;
+          color: $aws-text-primary;
+        }
+
+        tbody tr:hover {
+          background: #fafafa;
+        }
+
+        .success-rate-indicator {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .rate-bar {
+            flex: 1;
+            height: 6px;
+            background: $aws-border-light;
+            border-radius: 3px;
+            overflow: hidden;
+
+            .rate-fill {
+              height: 100%;
+              background: $aws-blue;
+              border-radius: 3px;
+              transition: width 0.3s ease;
+            }
+          }
+
+          span {
+            font-weight: 600;
+            color: $aws-text-primary;
+            min-width: 36px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .models-distribution {
+      padding: 0 20px 20px;
+      border-top: 1px solid $aws-border-light;
+
+      h3 {
+        margin: 16px 0 12px;
+        font-size: 14px;
+        font-weight: 700;
+        color: $aws-text-primary;
+      }
+
+      .distribution-chart {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 28px;
+        align-items: center;
+
+        @media (max-width: $breakpoint-lg) {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 20px;
+        }
+
+        .donut-chart {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .donut-center {
+            position: absolute;
+            text-align: center;
+
+            .center-value {
+              font-size: 18px;
+              font-weight: 700;
+              color: $aws-text-primary;
+              line-height: 1;
+            }
+
+            .center-label {
+              font-size: 12px;
+              color: $aws-text-muted;
+              font-weight: 500;
+              margin-top: 4px;
+            }
+          }
+        }
+
+        .distribution-legend {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            background: #fafafa;
+            border-radius: 4px;
+            border: 1px solid $aws-border-light;
+
+            .legend-color {
+              width: 12px;
+              height: 12px;
+              border-radius: 3px;
+              flex-shrink: 0;
+            }
+
+            .legend-label {
+              flex: 1;
+              font-weight: 500;
+              color: $aws-text-primary;
+              font-size: 13px;
+            }
+
+            .legend-value {
+              font-weight: 600;
+              color: $aws-text-muted;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ── Account Limits ──────────────────────────────────────────
+  .account-limits {
+    .limits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      padding: 20px;
+
+      .limit-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px;
+        background: #fafafa;
+        border-radius: 6px;
+        border: 1px solid $aws-border-light;
+
+        .limit-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 6px;
+          background: $aws-card-bg;
+          border: 1px solid $aws-border-light;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .limit-content {
+          flex: 1;
+
+          .limit-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: $aws-text-primary;
+            line-height: 1;
+            margin-bottom: 4px;
+          }
+
+          .limit-label {
+            font-size: 13px;
+            color: $aws-text-muted;
+            font-weight: 500;
+          }
+        }
+
+        .limit-info {
+          color: $aws-text-muted;
+          cursor: help;
+
+          &:hover {
+            color: $aws-blue;
+          }
+        }
+      }
+    }
+
+    .limits-upgrade {
+      padding: 20px;
+      border-top: 1px solid $aws-border-light;
+      text-align: center;
+      background: #fafafa;
+
+      .upgrade-message {
+        margin-bottom: 12px;
+
+        h3 {
+          margin: 0 0 8px;
+          font-size: 15px;
+          font-weight: 700;
+          color: $aws-text-primary;
+        }
+
+        p {
+          margin: 0 auto;
+          color: $aws-text-secondary;
+          line-height: 1.5;
+          max-width: 500px;
+          font-size: 13px;
+        }
+      }
+
+      .btn-upgrade {
+        background: $aws-blue;
+        color: #ffffff;
+        border: 1px solid $aws-blue;
+        border-radius: 4px;
+        padding: 8px 20px;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        transition: background 0.15s ease;
+
+        &:hover {
+          background: color.adjust($aws-blue, $lightness: -8%);
+        }
+      }
+    }
+  }
+
+  // ── Chart Styles ────────────────────────────────────────────
+  .history-chart {
+    display: flex;
+    align-items: end;
+    gap: 4px;
+    height: 180px;
+    padding: 12px;
+    background: #fafafa;
+    border-radius: 6px;
+    border: 1px solid $aws-border-light;
+
+    &.stacked {
+      .chart-bar-stacked {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: end;
+
+        .chart-bar {
+          position: relative;
+          min-height: 2px;
+          border-radius: 2px 2px 0 0;
+          transition: opacity 0.15s ease;
+
+          &.success {
+            background: $aws-green;
+          }
+
+          &.failed {
+            background: $aws-red;
+            border-radius: 0 0 2px 2px;
+          }
+
+          .bar-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #16191f;
+            color: #ffffff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease;
+            z-index: 10;
+          }
+
+          &:hover .bar-tooltip {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .chart-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+
+      .chart-bar-container {
+        height: 140px;
+        width: 100%;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+
+        .chart-bar {
+          width: 70%;
+          background: $aws-blue;
+          border-radius: 3px 3px 0 0;
+          position: relative;
+          min-height: 2px;
+
+          .bar-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #16191f;
+            color: #ffffff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease;
+            z-index: 10;
+          }
+
+          &:hover {
+            opacity: 0.85;
+
+            .bar-tooltip {
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      .chart-label {
+        font-size: 10px;
+        color: $aws-text-muted;
+        font-weight: 500;
+        text-align: center;
+      }
+    }
+  }
+
+  // ── Loading / Error States ──────────────────────────────────
+  .loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    text-align: center;
+
+    svg {
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: $aws-text-muted;
+      font-size: 14px;
+    }
+  }
+
+  .error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    text-align: center;
+
+    h2 {
+      margin: 0 0 8px;
+      color: $aws-red;
+      font-size: 16px;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: $aws-text-muted;
+      font-size: 14px;
+    }
+
+    .btn-refresh {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: $aws-blue;
+      color: #ffffff;
+      border: 1px solid $aws-blue;
+      border-radius: 4px;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+
+      &:hover {
+        background: color.adjust($aws-blue, $lightness: -8%);
+      }
+    }
+  }
+}
+
+// ── Animations ────────────────────────────────────────────────
+
+@keyframes awsPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────────
+
+@media (max-width: $breakpoint-lg) {
+  .usage-page {
+    .usage-hero {
+      margin: 16px;
+      padding: 16px;
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 20px;
+      }
+
+      .hero-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    }
+
+    .usage-actions-bar,
+    .usage-content {
+      margin: 16px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .usage-page {
+    .usage-hero {
+      margin: 12px;
+      padding: 16px;
+
+      .hero-text .hero-title {
+        font-size: clamp(2rem, 6vw, 2.5rem);
+      }
+    }
+
+    .usage-actions-bar,
+    .usage-content {
+      margin: 12px;
+    }
+
+    .credits-meter {
+      grid-template-columns: 1fr !important;
+      text-align: center;
+    }
+
+    .distribution-chart {
+      grid-template-columns: 1fr !important;
+      text-align: center;
+    }
+
+    .limits-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}
+
+// ── Focus / Accessibility ─────────────────────────────────────
+
+.btn-refresh:focus-visible,
+.btn-download:focus-visible,
+.btn-expand:focus-visible,
+.btn-upgrade:focus-visible,
+select:focus-visible {
+  outline: 2px solid $aws-blue;
+  outline-offset: 2px;
+}
+
+// ── Reduced Motion ────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

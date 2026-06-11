@@ -1,0 +1,3 @@
+# Geocoder model files are now hosted on AWS S3 and excluded from git via .gitignore
+# No need for Git LFS anymore - files are downloaded from S3 at runtime
+# See src/scripts/upload_geocoder_models.py and download_geocoder_models.py

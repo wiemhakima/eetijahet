@@ -1,0 +1,800 @@
+@use '../../styles/variables' as *;
+@use 'sass:color';
+// ─────────────────────────────────────────────────────────────────────────────
+// Settings Page — Clean flat console style
+// ─────────────────────────────────────────────────────────────────────────────
+
+$card-bg: #ffffff;
+$page-bg: #f2f3f3;
+$border: #d5dbdb;
+$border-light: #e9ecef;
+$text-primary: #16191f;
+$text-secondary: #545b64;
+$text-muted: #687078;
+$link-color: #0972d3;
+$blue: #0972d3;
+$green: #037f0c;
+$red: #d13212;
+
+// ─── Page Layout ────────────────────────────────────────────────────────────
+
+.settings-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: $text-primary;
+}
+
+.settings-header {
+  margin-bottom: 20px;
+
+  &__title {
+    font-size: 22px;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 4px;
+  }
+
+  &__desc {
+    font-size: 14px;
+    color: $text-secondary;
+    margin: 0;
+  }
+}
+
+.settings-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  align-items: start;
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+// ─── Settings Navigation ────────────────────────────────────────────────────
+
+.settings-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: $card-bg;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 4px;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: $text-secondary;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background: #f2f3f3;
+      color: $text-primary;
+    }
+
+    &--active {
+      background: rgba($blue, 0.06);
+      color: $blue;
+      font-weight: 600;
+
+      &:hover {
+        background: rgba($blue, 0.08);
+      }
+    }
+
+    @media (max-width: $breakpoint-md) {
+      width: auto;
+    }
+  }
+}
+
+// ─── Content Area ───────────────────────────────────────────────────────────
+
+.settings-content {
+  min-width: 0;
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// ─── Cards ──────────────────────────────────────────────────────────────────
+
+.settings-card {
+  background: $card-bg;
+  border: 1px solid $border;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__header {
+    padding: 16px 20px;
+    border-bottom: 1px solid $border-light;
+
+    h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: $text-primary;
+      margin: 0 0 2px;
+    }
+
+    p {
+      font-size: 13px;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+
+  &__body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__footer {
+    padding-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &--danger {
+    border-color: rgba($red, 0.3);
+
+    .settings-card__header {
+      h2 {
+        color: $red;
+      }
+    }
+  }
+}
+
+// ─── Avatar Row ─────────────────────────────────────────────────────────────
+
+.settings-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 8px;
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+  }
+}
+
+.settings-avatar-info {
+  display: flex;
+  flex-direction: column;
+
+  &__name {
+    font-size: 15px;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 1.3;
+  }
+
+  &__email {
+    font-size: 13px;
+    color: $text-muted;
+    line-height: 1.3;
+  }
+}
+
+// ─── Form Fields ────────────────────────────────────────────────────────────
+
+.settings-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  input {
+    padding: 8px 12px;
+    border: 1px solid $border;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: $text-primary;
+    background: $card-bg;
+    transition: border-color 0.15s ease;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: $blue;
+      box-shadow: 0 0 0 1px $blue;
+    }
+
+    &::placeholder {
+      color: #9ba7b6;
+    }
+  }
+
+  &__disabled {
+    background: #f2f3f3 !important;
+    color: $text-muted !important;
+    cursor: not-allowed;
+  }
+
+  &__hint {
+    font-size: 12px;
+    color: $text-muted;
+  }
+}
+
+// ─── Checkbox ───────────────────────────────────────────────────────────────
+
+.settings-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: $blue;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  label {
+    font-size: 13px;
+    color: $text-secondary;
+    cursor: pointer;
+  }
+}
+
+// ─── Alerts ─────────────────────────────────────────────────────────────────
+
+.settings-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+
+  &--success {
+    background: #f2fcf3;
+    color: $green;
+    border: 1px solid rgba($green, 0.2);
+  }
+
+  &--error {
+    background: #fdf3f0;
+    color: $red;
+    border: 1px solid rgba($red, 0.2);
+  }
+}
+
+// ─── Buttons ────────────────────────────────────────────────────────────────
+
+.settings-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  background: color.adjust($blue, $lightness: -8%);
+  border: 1px solid transparent;
+  font-family: inherit;
+
+  &--primary {
+    background: $blue;
+    color: #ffffff;
+    border-color: $blue;
+
+    &:hover:not(:disabled) {
+      background: color.adjust($blue, $lightness: -8%);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &--danger {
+    background: $card-bg;
+    color: $red;
+    border-color: rgba($red, 0.3);
+
+    &:hover:not(:disabled) {
+      background: #fdf3f0;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ─── Session Row ────────────────────────────────────────────────────────────
+
+.settings-session {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: #fafafa;
+  border: 1px solid $border-light;
+  border-radius: 6px;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  &__detail {
+    font-size: 12px;
+    color: $text-muted;
+  }
+
+  &__badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba($green, 0.08);
+    color: $green;
+    border: 1px solid rgba($green, 0.2);
+  }
+}
+
+// ─── Toggle List ────────────────────────────────────────────────────────────
+
+.settings-toggle-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-toggle-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid $border-light;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-primary;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  &__desc {
+    font-size: 12px;
+    color: $text-muted;
+    display: block;
+    line-height: 1.4;
+  }
+}
+
+// Toggle switch
+.settings-toggle {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  flex-shrink: 0;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #d5dbdb;
+    border-radius: 11px;
+    transition: background 0.2s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 2px;
+      bottom: 2px;
+      background: #ffffff;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  input:checked + &__slider {
+    background: $blue;
+  }
+
+  input:checked + &__slider::before {
+    transform: translateX(18px);
+  }
+}
+
+// ─── Info Grid ──────────────────────────────────────────────────────────────
+
+.settings-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.settings-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+  background: #fafafa;
+  border: 1px solid $border-light;
+  border-radius: 6px;
+
+  &__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  &__value {
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-primary;
+    word-break: break-all;
+
+    &--badge {
+      display: inline-block;
+      background: rgba($blue, 0.08);
+      color: $blue;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba($blue, 0.2);
+      font-size: 12px;
+      width: fit-content;
+    }
+  }
+}
+
+// ─── Danger Zone ────────────────────────────────────────────────────────────
+
+.settings-danger-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  &__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-primary;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  &__desc {
+    font-size: 12px;
+    color: $text-muted;
+    display: block;
+    line-height: 1.4;
+    max-width: 400px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+// ─── Team Tab ───────────────────────────────────────────────────────────────
+
+.st-team-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.st-team-loading {
+  font-size: 13px;
+  color: $text-muted;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.st-team-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 0;
+  color: $text-muted;
+
+  svg {
+    width: 36px;
+    height: 36px;
+    opacity: 0.35;
+  }
+
+  p {
+    font-size: 13px;
+    margin: 0;
+  }
+}
+
+.st-member-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.st-member {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid $border-light;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba($blue, 0.1);
+    color: $blue;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__name {
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-primary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__email {
+    font-size: 12px;
+    color: $text-muted;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__role {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+
+    &--admin {
+      background: rgba($blue, 0.08);
+      color: $blue;
+      border: 1px solid rgba($blue, 0.2);
+    }
+
+    &--manager {
+      background: rgba(#037f0c, 0.08);
+      color: #037f0c;
+      border: 1px solid rgba(#037f0c, 0.2);
+    }
+  }
+
+  &__remove {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $text-muted;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: color 0.15s ease, background 0.15s ease;
+
+    &:hover {
+      color: $red;
+      background: rgba($red, 0.06);
+    }
+  }
+}
+
+// ─── Invite Modal ────────────────────────────────────────────────────────────
+
+.st-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.st-modal {
+  background: $card-bg;
+  border: 1px solid $border;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid $border-light;
+
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: $text-primary;
+      margin: 0;
+    }
+  }
+
+  &__close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    color: $text-muted;
+    padding: 2px 6px;
+    border-radius: 4px;
+
+    &:hover {
+      background: #f2f3f3;
+      color: $text-primary;
+    }
+  }
+
+  &__body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__select {
+    padding: 8px 12px;
+    border: 1px solid $border;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: inherit;
+    color: $text-primary;
+    background: $card-bg;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: $blue;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-top: 4px;
+  }
+
+  &__cancel {
+    background: $card-bg;
+    color: $text-secondary;
+    border: 1px solid $border;
+
+    &:hover {
+      background: #f2f3f3;
+    }
+  }
+}
+
+// ─── Focus / Accessibility ──────────────────────────────────────────────────
+
+.settings-nav__item:focus-visible,
+.settings-btn:focus-visible,
+.settings-field input:focus-visible {
+  outline: 2px solid $blue;
+  outline-offset: 2px;
+}

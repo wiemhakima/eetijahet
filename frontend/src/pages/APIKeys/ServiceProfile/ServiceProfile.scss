@@ -1,0 +1,686 @@
+@use '../../../styles/variables' as *;
+
+// AWS-style clean, professional service profile
+.aws-profile {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #16191f;
+  min-height: 100vh;
+}
+
+// Not Found
+.aws-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  padding: 2rem;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #16191f;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #687078;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+// Breadcrumb
+.aws-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.75rem 0;
+  font-size: 0.8125rem;
+  margin-bottom: 0.25rem;
+
+  .aws-breadcrumb-link {
+    background: none;
+    border: none;
+    color: #0972d3;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0;
+    font-weight: 400;
+
+    &:hover {
+      text-decoration: underline;
+      color: #033160;
+    }
+  }
+
+  .aws-breadcrumb-sep {
+    color: #687078;
+  }
+
+  .aws-breadcrumb-current {
+    color: #16191f;
+    font-weight: 600;
+  }
+}
+
+// Page Header
+.aws-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e9ebed;
+  margin-bottom: 1rem;
+
+  .aws-header-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .aws-service-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f3f3;
+    flex-shrink: 0;
+    margin-top: 2px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .aws-header-text {
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #16191f;
+      margin: 0 0 0.375rem 0;
+      line-height: 1.3;
+    }
+
+    .aws-header-summary {
+      font-size: 0.875rem;
+      color: #687078;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 560px;
+    }
+  }
+
+  .aws-header-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .aws-header-actions {
+      width: 100%;
+
+      .aws-btn {
+        flex: 1;
+      }
+    }
+  }
+}
+
+// Buttons
+.aws-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.aws-btn-primary {
+    background: #0972d3;
+    color: #fff;
+    border-color: #0972d3;
+
+    &:hover {
+      background: #033160;
+      border-color: #033160;
+    }
+  }
+
+  &.aws-btn-outline {
+    background: #fff;
+    color: #16191f;
+    border-color: #c6c6cd;
+
+    &:hover {
+      background: #f2f3f3;
+      border-color: #8d9096;
+    }
+  }
+
+  &.aws-btn-full {
+    width: 100%;
+  }
+}
+
+// Detail Bar
+.aws-detail-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  background: #fff;
+  border: 1px solid #e9ebed;
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1.25rem;
+
+  .aws-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 1rem;
+  }
+
+  .aws-detail-divider {
+    width: 1px;
+    height: 24px;
+    background: #e9ebed;
+  }
+
+  .aws-detail-label {
+    font-size: 0.75rem;
+    color: #687078;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .aws-detail-value {
+    font-size: 0.8125rem;
+    color: #16191f;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      color: #687078;
+    }
+  }
+
+  .aws-detail-code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    color: #0972d3;
+    background: #f2f8fd;
+    padding: 0.125rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    .aws-detail-divider {
+      display: none;
+    }
+
+    .aws-detail-item {
+      padding: 0.25rem 0;
+    }
+  }
+}
+
+// Method Badge
+.aws-method-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #0972d3;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  &.small {
+    font-size: 0.625rem;
+    padding: 0.0625rem 0.375rem;
+  }
+}
+
+// Content Grid
+.aws-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.25rem;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aws-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.aws-sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 80px;
+}
+
+// Cards (AWS-style)
+.aws-card {
+  background: #fff;
+  border: 1px solid #e9ebed;
+  border-radius: 12px;
+  overflow: hidden;
+
+  .aws-card-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e9ebed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fafafa;
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #16191f;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        color: #0972d3;
+      }
+    }
+  }
+
+  .aws-card-body {
+    padding: 1.25rem;
+
+    &.aws-card-body-flush {
+      padding: 0;
+    }
+  }
+}
+
+// Description
+.aws-description {
+  font-size: 0.875rem;
+  color: #414750;
+  line-height: 1.7;
+  margin: 0 0 1.5rem 0;
+}
+
+// Features
+.aws-features {
+  h3 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #16191f;
+    margin: 0 0 0.75rem 0;
+  }
+}
+
+.aws-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.8125rem;
+    color: #414750;
+    padding: 0.5rem 0.75rem;
+    background: #fafafa;
+    border-radius: 6px;
+    border: 1px solid #f2f3f3;
+
+    .aws-check-icon {
+      color: #037f0c;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Parameters Table
+.aws-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    tr {
+      background: #fafafa;
+      border-bottom: 1px solid #e9ebed;
+    }
+
+    th {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: #687078;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.625rem 1rem;
+      text-align: left;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #f2f3f3;
+      transition: background 0.1s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: #fafafa;
+      }
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      font-size: 0.8125rem;
+      color: #414750;
+      vertical-align: middle;
+    }
+  }
+
+  .aws-param-name {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 0.8125rem;
+    color: #0972d3;
+    font-weight: 600;
+    background: none;
+    padding: 0;
+  }
+
+  .aws-param-type {
+    font-size: 0.75rem;
+    color: #687078;
+    background: #f2f3f3;
+    padding: 0.125rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .aws-required-badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 4px;
+
+    &.required {
+      color: #d91515;
+      background: #fff7f7;
+    }
+
+    &.optional {
+      color: #687078;
+      background: #f2f3f3;
+    }
+  }
+
+  .aws-param-desc {
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    thead {
+      display: none;
+    }
+
+    tbody tr {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 1rem;
+      gap: 0.25rem;
+    }
+
+    tbody td {
+      padding: 0.125rem 0;
+    }
+  }
+}
+
+// Code Tabs
+.aws-code-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #e9ebed;
+  background: #fafafa;
+  padding: 0 0.5rem;
+
+  .aws-code-tab {
+    padding: 0.625rem 1.25rem;
+    border: none;
+    background: none;
+    color: #687078;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.15s ease;
+
+    &:hover {
+      color: #0972d3;
+    }
+
+    &.active {
+      color: #0972d3;
+      font-weight: 600;
+      border-bottom-color: #0972d3;
+    }
+  }
+}
+
+// Code Block
+.aws-code-block {
+  background: #0f1b2d;
+  overflow-x: auto;
+
+  pre {
+    margin: 0;
+    padding: 1.25rem;
+
+    code {
+      font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.65;
+      color: #d1d5db;
+      white-space: pre;
+    }
+  }
+}
+
+// Response Status
+.aws-response-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: #0f1b2d;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #037f0c;
+
+  .aws-status-dot {
+    width: 8px;
+    height: 8px;
+    background: #037f0c;
+    border-radius: 50%;
+  }
+}
+
+// Copy Button
+.aws-btn-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #c6c6cd;
+  border-radius: 6px;
+  background: #fff;
+  color: #687078;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  &:hover {
+    border-color: #0972d3;
+    color: #0972d3;
+    background: #f2f8fd;
+  }
+
+  &.copied {
+    border-color: #037f0c;
+    color: #037f0c;
+    background: #f2fcf3;
+  }
+}
+
+// Sidebar Cards
+.aws-sidebar-card {
+  .aws-card-body {
+    padding: 0;
+  }
+}
+
+.aws-info-dl {
+  margin: 0;
+
+  .aws-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid #f2f3f3;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    dt {
+      font-size: 0.8125rem;
+      color: #687078;
+      font-weight: 500;
+    }
+
+    dd {
+      margin: 0;
+      font-size: 0.8125rem;
+      color: #16191f;
+      font-weight: 600;
+      text-align: right;
+
+      code {
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+        font-size: 0.75rem;
+        color: #0972d3;
+        background: #f2f8fd;
+        padding: 0.125rem 0.5rem;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+// CTA Card
+.aws-cta-card {
+  .aws-card-body {
+    padding: 1.25rem;
+  }
+
+  h3 {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #16191f;
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    font-size: 0.8125rem;
+    color: #687078;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+  }
+
+  .aws-btn + .aws-btn {
+    margin-top: 0.5rem;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .aws-profile {
+    padding: 0;
+  }
+
+  .aws-page-header {
+    padding-bottom: 1rem;
+
+    .aws-header-text h1 {
+      font-size: 1.25rem;
+    }
+  }
+
+  .aws-card .aws-card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .aws-card .aws-card-body {
+    padding: 1rem;
+  }
+}

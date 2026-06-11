@@ -1,0 +1,67 @@
+// Signup Page Variables - Modern Digital Ocean Style
+// ================================================
+
+// Colors
+$signup-primary: #0061FF;
+$signup-primary-hover: #0052D9;
+$signup-primary-light: rgba(0, 97, 255, 0.08);
+$signup-secondary: #6B7280;
+$signup-success: #10B981;
+$signup-error: #EF4444;
+$signup-warning: #F59E0B;
+
+// Text Colors
+$signup-text-primary: #111827;
+$signup-text-secondary: #6B7280;
+$signup-text-muted: #9CA3AF;
+
+// Background Colors
+$signup-bg-primary: #FFFFFF;
+$signup-bg-secondary: #F9FAFB;
+$signup-bg-gradient: linear-gradient(135deg, #0061FF 0%, #1E40AF 100%);
+
+// Border Colors
+$signup-border: #E5E7EB;
+$signup-border-focus: #0061FF;
+
+// Shadows
+$signup-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$signup-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$signup-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$signup-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// Typography
+$signup-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$signup-font-size-xs: 0.75rem;
+$signup-font-size-sm: 0.875rem;
+$signup-font-size-base: 1rem;
+$signup-font-size-lg: 1.125rem;
+$signup-font-size-xl: 1.25rem;
+$signup-font-size-2xl: 1.5rem;
+$signup-font-size-3xl: 1.875rem;
+
+// Spacing
+$signup-spacing-xs: 0.25rem;
+$signup-spacing-sm: 0.5rem;
+$signup-spacing-md: 1rem;
+$signup-spacing-lg: 1.5rem;
+$signup-spacing-xl: 2rem;
+$signup-spacing-2xl: 3rem;
+
+// Border Radius
+$signup-radius-sm: 0.375rem;
+$signup-radius: 0.5rem;
+$signup-radius-lg: 0.75rem;
+$signup-radius-xl: 1rem;
+$signup-radius-full: 9999px;
+
+// Transitions
+$signup-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+$signup-transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+$signup-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+// Breakpoints
+$signup-breakpoint-sm: 640px;
+$signup-breakpoint-md: 768px;
+$signup-breakpoint-lg: 1024px;
+$signup-breakpoint-xl: 1280px;

@@ -1,0 +1,325 @@
+@use '../../styles/variables' as *;
+
+.pricing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $white;
+  color: $text-color;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.pricing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-8;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $spacing-4;
+  }
+}
+
+// Hero
+.pricing-hero {
+  padding: $spacing-32 0 $spacing-16;
+  text-align: center;
+  background: linear-gradient(180deg, #f0f6ff 0%, $white 100%);
+
+  &__badge {
+    display: inline-block;
+    padding: $spacing-2 $spacing-5;
+    background: rgba($primary-color, 0.1);
+    color: $primary-color;
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: $spacing-6;
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-6;
+  }
+
+  &__subtitle {
+    font-size: $font-size-xl;
+    color: $text-light;
+    max-width: 540px;
+    margin: 0 auto $spacing-10;
+    line-height: $line-height-relaxed;
+  }
+}
+
+// Toggle
+.pricing-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-3;
+
+  &__label {
+    font-size: $font-size-base;
+    color: $text-muted;
+    transition: $transition-fast;
+
+    &--active {
+      color: $text-color;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__save {
+    font-size: $font-size-xs;
+    background: rgba($success-color, 0.1);
+    color: $success-color;
+    padding: 2px $spacing-2;
+    border-radius: $border-radius-full;
+    margin-left: $spacing-1;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__btn {
+    width: 48px;
+    height: 26px;
+    background: #e2e8f0;
+    border-radius: $border-radius-full;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: $transition-base;
+
+    &--on {
+      background: $primary-color;
+    }
+  }
+
+  &__knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: $white;
+    border-radius: 50%;
+    transition: $transition-base;
+    box-shadow: $box-shadow-sm;
+
+    .pricing-toggle__btn--on & {
+      left: 25px;
+    }
+  }
+}
+
+// Plans grid
+.pricing-plans-section {
+  padding: $spacing-16 0 $spacing-24;
+}
+
+.pricing-plans {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-6;
+  align-items: start;
+
+  @media (max-width: $breakpoint-xl) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Card
+.pricing-card {
+  position: relative;
+  background: $white;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: $border-radius-2xl;
+  padding: $spacing-8;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-5;
+  transition: $transition-base;
+
+  &:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  &--highlight {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 1px $primary-color, 0 20px 60px rgba($primary-color, 0.15);
+
+    &:hover {
+      box-shadow: 0 0 0 1px $primary-color, 0 24px 70px rgba($primary-color, 0.2);
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: -$spacing-3;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: $spacing-1 $spacing-4;
+    background: $gradient-primary;
+    color: $white;
+    border-radius: $border-radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    white-space: nowrap;
+  }
+
+  &__header {
+    padding-top: $spacing-2;
+  }
+
+  &__name {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $spacing-1;
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: $text-light;
+    margin: 0;
+  }
+
+  &__price {
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-1;
+  }
+
+  &__price-currency {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: $text-light;
+  }
+
+  &__price-amount {
+    font-size: $font-size-5xl;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    color: $text-color;
+  }
+
+  &__price-period {
+    font-size: $font-size-base;
+    color: $text-muted;
+  }
+
+  &__price-custom {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    color: $text-color;
+  }
+
+  &__credits {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $primary-color;
+    background: rgba($primary-color, 0.08);
+    padding: $spacing-2 $spacing-3;
+    border-radius: $border-radius;
+    display: inline-block;
+  }
+
+  &__features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    flex: 1;
+  }
+
+  &__features li {
+    font-size: $font-size-sm;
+    color: $text-light;
+  }
+
+  &__check {
+    color: $success-color;
+    font-weight: $font-weight-bold;
+    margin-right: $spacing-2;
+  }
+
+  &__cta {
+    display: block;
+    text-align: center;
+    padding: $spacing-4;
+    border-radius: $border-radius-lg;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    transition: $transition-base;
+    margin-top: auto;
+
+    &--primary {
+      background: $gradient-primary;
+      color: $white;
+      box-shadow: 0 4px 16px rgba($primary-color, 0.3);
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba($primary-color, 0.4);
+      }
+    }
+
+    &--outline {
+      background: $white;
+      color: $primary-color;
+      border: 2px solid rgba($primary-color, 0.25);
+
+      &:hover {
+        border-color: $primary-color;
+        background: rgba($primary-color, 0.04);
+      }
+    }
+  }
+}
+
+// FAQ
+.pricing-faq {
+  padding: $spacing-16 0 $spacing-24;
+  background: #f8faff;
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    text-align: center;
+    margin-bottom: $spacing-12;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-8;
+
+    @media (max-width: $breakpoint-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    h3 {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-3;
+      color: $text-color;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $text-light;
+      line-height: $line-height-relaxed;
+      margin: 0;
+    }
+  }
+}

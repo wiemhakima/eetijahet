@@ -1,0 +1,14 @@
+# Existing dependencies
+pymongo==4.6.0
+pandas==2.0.3
+numpy==1.24.3
+xgboost==1.7.6
+joblib==1.3.2
+
+# Routing system
+networkx==3.1
+scipy==1.11.3
+scikit-learn==1.3.1
+
+# H3 hexagonal grid for GPS trace snapping (STEP 2)
+h3==3.7.7

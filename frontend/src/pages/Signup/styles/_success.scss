@@ -1,0 +1,211 @@
+// Signup Success Page Styles
+// ================================================
+@use 'variables' as *;
+@use "sass:color";
+
+.signup-success {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $signup-spacing-xl;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+}
+
+.success-card {
+  background: $signup-bg-primary;
+  border-radius: $signup-radius-xl;
+  padding: $signup-spacing-2xl;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: $signup-shadow-xl;
+  border: 1px solid $signup-border;
+  
+  @media (max-width: $signup-breakpoint-sm) {
+    padding: $signup-spacing-xl;
+  }
+}
+
+.success-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  margin-bottom: $signup-spacing-xl;
+  
+  .success-icon-bg {
+    width: 72px;
+    height: 72px;
+    background: $signup-success;
+    border-radius: $signup-radius-full;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    
+    svg {
+      width: 32px;
+      height: 32px;
+      stroke: white;
+      stroke-width: 3;
+    }
+  }
+  
+  .success-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 72px;
+    height: 72px;
+    background: $signup-success;
+    border-radius: $signup-radius-full;
+    transform: translate(-50%, -50%);
+    animation: successPulse 2s ease-out infinite;
+    z-index: 0;
+  }
+  
+  @keyframes successPulse {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.4;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.8);
+      opacity: 0;
+    }
+  }
+}
+
+.signup-success h1 {
+  font-size: $signup-font-size-2xl;
+  font-weight: 700;
+  color: $signup-text-primary;
+  margin: 0 0 $signup-spacing-md 0;
+  letter-spacing: -0.025em;
+}
+
+.success-message {
+  font-size: $signup-font-size-base;
+  color: $signup-text-secondary;
+  line-height: 1.6;
+  margin: 0 0 $signup-spacing-xl 0;
+  
+  strong {
+    color: $signup-text-primary;
+    font-weight: 600;
+  }
+}
+
+.success-next-steps {
+  background: $signup-bg-secondary;
+  border-radius: $signup-radius-lg;
+  padding: $signup-spacing-lg;
+  margin-bottom: $signup-spacing-xl;
+  text-align: left;
+  
+  h3 {
+    font-size: $signup-font-size-sm;
+    font-weight: 600;
+    color: $signup-text-primary;
+    margin: 0 0 $signup-spacing-md 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      display: flex;
+      align-items: center;
+      gap: $signup-spacing-md;
+      padding: $signup-spacing-sm 0;
+      
+      &:not(:last-child) {
+        border-bottom: 1px solid $signup-border;
+      }
+      
+      .step-number {
+        width: 28px;
+        height: 28px;
+        background: $signup-primary-light;
+        color: $signup-primary;
+        border-radius: $signup-radius-full;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $signup-font-size-sm;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      
+      span:last-child {
+        font-size: $signup-font-size-sm;
+        color: $signup-text-secondary;
+      }
+    }
+  }
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $signup-spacing-md;
+  margin-bottom: $signup-spacing-lg;
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $signup-spacing-md $signup-spacing-xl;
+    border-radius: $signup-radius-lg;
+    font-size: $signup-font-size-base;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all $signup-transition-fast;
+    border: none;
+    cursor: pointer;
+    
+    &.btn-lg {
+      padding: $signup-spacing-lg $signup-spacing-xl;
+    }
+    
+    &.btn-primary {
+      background: $signup-primary;
+      color: white;
+      
+      &:hover {
+        background: $signup-primary-hover;
+      }
+    }
+    
+    &.btn-secondary {
+      background: transparent;
+      color: $signup-text-secondary;
+      border: 1px solid $signup-border;
+      
+      &:hover {
+        background: $signup-bg-secondary;
+        border-color: color.adjust($signup-border, $lightness: -10%);
+        color: $signup-text-primary;
+      }
+    }
+  }
+}
+
+.success-support {
+  font-size: $signup-font-size-sm;
+  color: $signup-text-muted;
+  margin: 0;
+  
+  a {
+    color: $signup-primary;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

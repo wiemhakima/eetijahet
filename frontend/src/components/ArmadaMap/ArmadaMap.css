@@ -1,0 +1,114 @@
+/* ── ArmadaMap — Google Maps visual style using Armada GPS data ──────────── */
+
+/* Background colour — warm beige, Google Maps feel */
+.armada-map-wrap .leaflet-container {
+  background: #e8e0d8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+}
+
+/* Static map thumbnail — no interaction */
+.armada-map-static .leaflet-container {
+  pointer-events: none;
+  cursor: default !important;
+}
+
+/* ── Zoom controls ─────────────────────────────────────────────────────────── */
+.armada-map-wrap .leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3) !important;
+  border-radius: 4px !important;
+}
+.armada-map-wrap .leaflet-control-zoom a {
+  background: #fff !important;
+  color: #666 !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+  font-size: 18px !important;
+  font-weight: 300 !important;
+}
+.armada-map-wrap .leaflet-control-zoom a:hover {
+  background: #f8f8f8 !important;
+  color: #333 !important;
+}
+.armada-map-wrap .leaflet-control-zoom-in  { border-radius: 4px 4px 0 0 !important; }
+.armada-map-wrap .leaflet-control-zoom-out { border-radius: 0 0 4px 4px !important; border-bottom: none !important; }
+
+/* ── Attribution ───────────────────────────────────────────────────────────── */
+.armada-map-wrap .leaflet-control-attribution {
+  font-size: 10px;
+  color: #777;
+  background: rgba(255,255,255,0.75);
+}
+
+/* ── Area name labels ──────────────────────────────────────────────────────── */
+.armada-map-wrap .leaflet-marker-icon.map-area-label {
+  background: transparent !important;
+  border: none !important;
+}
+.map-area-label-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6a6a6a;
+  letter-spacing: 0.04em;
+  text-shadow:
+    -1px -1px 0 rgba(232,224,216,0.9),
+     1px -1px 0 rgba(232,224,216,0.9),
+    -1px  1px 0 rgba(232,224,216,0.9),
+     1px  1px 0 rgba(232,224,216,0.9),
+     0 0 4px rgba(232,224,216,0.95);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  text-transform: uppercase;
+}
+.map-area-label--city {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4a4a4a;
+  letter-spacing: 0.05em;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.map-area-label--city:hover {
+  color: #1a73e8;
+}
+
+/* ── Road name labels ──────────────────────────────────────────────────────── */
+.armada-map-wrap .leaflet-marker-icon.map-road-label {
+  background: transparent !important;
+  border: none !important;
+}
+.map-road-label-text {
+  font-size: 9.5px;
+  font-weight: 500;
+  color: #777;
+  text-shadow:
+    -1px 0 rgba(244,241,236,0.85),
+     1px 0 rgba(244,241,236,0.85),
+     0 -1px rgba(244,241,236,0.85),
+     0  1px rgba(244,241,236,0.85);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Popup ─────────────────────────────────────────────────────────────────── */
+.armada-map-wrap .leaflet-popup-content-wrapper {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18) !important;
+  padding: 0 !important;
+}
+.armada-map-wrap .leaflet-popup-content {
+  margin: 0 !important;
+  padding: 12px 14px !important;
+}
+.armada-map-wrap .leaflet-popup-tip-container {
+  margin-top: -1px;
+}
+
+/* ── Crosshair cursor for click-to-place mode ─────────────────────────────── */
+.armada-map-crosshair .leaflet-container {
+  cursor: crosshair !important;
+}

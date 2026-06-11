@@ -1,0 +1,311 @@
+// ─── Client Dashboard ────────────────────────────────────────────────────────
+// AWS-style, consistent with Dashboard.scss tokens
+
+$aws-bg:             #f2f3f3;
+$aws-card-bg:        #ffffff;
+$aws-border:         #d5dbdb;
+$aws-text-primary:   #16191f;
+$aws-text-secondary: #545b64;
+$aws-text-muted:     #687078;
+$aws-blue:           #0972d3;
+$aws-green:          #037f0c;
+$aws-orange:         #d97706;
+
+.client-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// ─── Welcome banner ──────────────────────────────────────────────────────────
+
+.cd-welcome {
+  background: $aws-card-bg;
+  border: 1px solid $aws-border;
+  border-radius: 8px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  &__title {
+    font-size: 22px;
+    font-weight: 700;
+    color: $aws-text-primary;
+    margin: 0 0 6px;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: $aws-text-secondary;
+    margin: 0;
+  }
+}
+
+// ─── Buttons ─────────────────────────────────────────────────────────────────
+
+.cd-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+
+  &--primary {
+    background: $aws-blue;
+    color: #fff;
+    border-color: $aws-blue;
+
+    &:hover { background: #0762b8; border-color: #0762b8; }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $aws-blue;
+    border-color: $aws-blue;
+
+    &:hover { background: rgba(#0972d3, 0.06); }
+  }
+}
+
+.cd-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  color: $aws-blue;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover { text-decoration: underline; }
+}
+
+// ─── Stats ───────────────────────────────────────────────────────────────────
+
+.cd-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.cd-stat-card {
+  background: $aws-card-bg;
+  border: 1px solid $aws-border;
+  border-radius: 8px;
+  padding: 20px 22px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &--blue   { background: #e8f4fd; color: $aws-blue; }
+    &--orange { background: #fef3e2; color: $aws-orange; }
+    &--green  { background: #e6f4ea; color: $aws-green; }
+    &--teal   { background: #e0f4f4; color: #0d7377; }
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 500;
+    color: $aws-text-secondary;
+  }
+
+  &__value {
+    font-size: 32px;
+    font-weight: 700;
+    color: $aws-text-primary;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  &__sub {
+    font-size: 12px;
+    color: $aws-text-muted;
+  }
+}
+
+// ─── Orders widget ───────────────────────────────────────────────────────────
+
+.cd-orders {
+  background: $aws-card-bg;
+  border: 1px solid $aws-border;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 22px 0;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: $aws-text-primary;
+    margin: 0 0 3px;
+  }
+
+  &__desc {
+    font-size: 13px;
+    color: $aws-text-secondary;
+    margin: 0;
+  }
+
+  &__table-wrapper {
+    overflow-x: auto;
+    margin-top: 16px;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    thead tr {
+      border-bottom: 1px solid $aws-border;
+    }
+
+    th {
+      padding: 10px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+      color: $aws-text-secondary;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #f0f1f1;
+      transition: background 0.12s;
+
+      &:last-child { border-bottom: none; }
+      &:hover { background: #f8f9f9; }
+    }
+
+    td {
+      padding: 12px 16px;
+      color: $aws-text-primary;
+      vertical-align: middle;
+    }
+  }
+
+  &__id {
+    font-weight: 600;
+    color: $aws-blue;
+    white-space: nowrap;
+  }
+
+  &__addr {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: $aws-text-secondary;
+    white-space: nowrap;
+
+    svg { color: $aws-text-muted; flex-shrink: 0; }
+  }
+
+  &__eta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: $aws-orange;
+    font-weight: 500;
+  }
+
+  &__dash {
+    color: $aws-text-muted;
+  }
+
+  &__price {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  &__date {
+    color: $aws-text-muted;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  &__cta {
+    padding: 16px 22px;
+    border-top: 1px solid $aws-border;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+// ─── Status badges ────────────────────────────────────────────────────────────
+
+.cd-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &--delivered  { background: #e6f4ea; color: $aws-green; }
+  &--progress   { background: #fef3e2; color: $aws-orange; }
+  &--pending    { background: #e8f4fd; color: $aws-blue; }
+  &--accepted   { background: #e8f4fd; color: $aws-blue; }
+  &--cancelled  { background: #fce8e6; color: #c5221f; }
+}
+
+.cd-orders__loading {
+  padding: 40px;
+  text-align: center;
+  color: $aws-text-muted;
+  font-size: 14px;
+}
+
+.cd-orders__empty {
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: $aws-text-secondary;
+  font-size: 14px;
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+
+@media (max-width: 768px) {
+  .cd-welcome {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cd-stats {
+    grid-template-columns: 1fr;
+  }
+}

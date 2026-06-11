@@ -1,0 +1,5 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/aws-hero' as *;
+
+// Billing Hero Section - AWS style
+@include aws-hero('.billing-hero');

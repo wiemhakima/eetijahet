@@ -1,0 +1,53 @@
+// Signup Page Styles - Modern Digital Ocean Style
+// ================================================
+// Main entry point that imports all partial styles
+
+@use './styles/variables' as *;
+@use './styles/layout';
+@use './styles/form';
+@use './styles/features';
+@use './styles/success';
+
+// Global Signup Page Utilities
+// ================================================
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .signup-page *,
+  .signup-page *::before,
+  .signup-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .signup-page {
+    input,
+    button,
+    .btn {
+      border-width: 2px;
+    }
+    
+    .progress-step .step-circle {
+      border-width: 3px;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .signup-page {
+    .signup-features {
+      display: none;
+    }
+    
+    .signup-form-panel {
+      max-width: 100%;
+      flex: 1;
+    }
+  }
+}

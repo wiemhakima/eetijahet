@@ -1,0 +1,476 @@
+// ─── Nouvelle Livraison ───────────────────────────────────────────────────────
+
+$aws-card-bg:        #ffffff;
+$aws-border:         #d5dbdb;
+$aws-text-primary:   #16191f;
+$aws-text-secondary: #545b64;
+$aws-text-muted:     #687078;
+$aws-blue:           #0972d3;
+$aws-green:          #037f0c;
+$aws-orange:         #d97706;
+$aws-red:            #d13212;
+
+.new-delivery {
+  display: flex;
+  height: calc(100vh - 112px);
+  border: 1px solid $aws-border;
+  border-radius: 8px;
+  overflow: hidden;
+  background: $aws-card-bg;
+}
+
+// ─── Left panel ───────────────────────────────────────────────────────────────
+
+.nd-form-panel {
+  width: 400px;
+  min-width: 360px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 24px;
+  border-right: 1px solid $aws-border;
+  gap: 0;
+
+  &__header {
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 17px;
+    font-weight: 700;
+    color: $aws-text-primary;
+    margin: 0 0 5px;
+  }
+
+  &__desc {
+    font-size: 13px;
+    color: $aws-text-secondary;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+// ─── Stepper ─────────────────────────────────────────────────────────────────
+
+.nd-stepper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 0;
+}
+
+.nd-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+
+  &__circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid $aws-border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: $aws-text-muted;
+    background: #f8f9f9;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  &__label {
+    font-size: 11px;
+    color: $aws-text-muted;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  &__line {
+    flex: 1;
+    height: 2px;
+    background: $aws-border;
+    margin: 0 8px;
+  }
+
+  &--active {
+    .nd-step__circle {
+      border-color: $aws-blue;
+      background: $aws-blue;
+      color: #fff;
+    }
+    .nd-step__label { color: $aws-blue; font-weight: 600; }
+  }
+
+  &--done {
+    .nd-step__circle {
+      border-color: $aws-green;
+      background: $aws-green;
+      color: #fff;
+    }
+    .nd-step__label { color: $aws-green; }
+    .nd-step__line { background: $aws-green; }
+  }
+}
+
+// ─── Section ─────────────────────────────────────────────────────────────────
+
+.nd-section { margin-bottom: 16px; }
+
+.nd-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $aws-text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+
+  svg { color: $aws-text-muted; }
+}
+
+// ─── Pin preview ─────────────────────────────────────────────────────────────
+
+.nd-pin-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 2px dashed $aws-border;
+  border-radius: 10px;
+  background: #fafafa;
+  transition: all 0.15s;
+
+  &--waiting { border-color: #c5cfd9; }
+
+  &--set {
+    border-style: solid;
+    border-color: #b7cfe8;
+    background: #f0f7ff;
+  }
+}
+
+.nd-pin-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: $aws-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+}
+
+.nd-pin-value {
+  font-size: 13px;
+  color: $aws-text-primary;
+}
+
+.nd-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #f8f9f9;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.nd-summary-text {
+  font-size: 12px;
+  color: $aws-text-secondary;
+}
+
+// ─── Pin dots ─────────────────────────────────────────────────────────────────
+
+.nd-pin-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2.5px solid white;
+  box-shadow: 0 0 0 2px currentColor;
+
+  &--green { color: #34a853; background: #34a853; }
+  &--red   { color: #ea4335; background: #ea4335; }
+  &--sm    { width: 10px; height: 10px; }
+}
+
+// ─── Package type grid ────────────────────────────────────────────────────────
+
+.nd-package-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.nd-package-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  border: 1.5px solid $aws-border;
+  border-radius: 10px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+
+  &:hover { border-color: $aws-blue; background: #f0f7ff; }
+
+  &--active {
+    border-color: $aws-blue;
+    background: rgba($aws-blue, 0.06);
+    box-shadow: 0 0 0 3px rgba($aws-blue, 0.1);
+  }
+
+  &__icon { font-size: 22px; margin-bottom: 5px; }
+  &__label { font-size: 11px; font-weight: 600; color: $aws-text-secondary; line-height: 1.3; }
+}
+
+// ─── Inputs ──────────────────────────────────────────────────────────────────
+
+.nd-input, .nd-textarea, .nd-select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 12px;
+  border: 1px solid $aws-border;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  color: $aws-text-primary;
+  background: $aws-card-bg;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &:focus { border-color: $aws-blue; box-shadow: 0 0 0 2px rgba($aws-blue, 0.12); }
+}
+
+.nd-textarea { resize: vertical; }
+
+.nd-hint {
+  font-size: 12px;
+  color: $aws-text-muted;
+  margin: 4px 0 0;
+}
+
+// ─── Recap box ───────────────────────────────────────────────────────────────
+
+.nd-recap {
+  background: #f8fbff;
+  border: 1px solid #cce0f5;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  &__connector {
+    width: 2px;
+    height: 16px;
+    background: $aws-border;
+    margin: 4px 0 4px 6px;
+  }
+
+  &__label {
+    font-size: 11px;
+    font-weight: 600;
+    color: $aws-text-muted;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  &__val {
+    font-size: 13px;
+    color: $aws-text-primary;
+    font-weight: 500;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #dce8f5;
+  }
+
+  &__stat {
+    text-align: center;
+  }
+
+  &__stat-label {
+    font-size: 11px;
+    color: $aws-text-muted;
+    margin-bottom: 3px;
+  }
+
+  &__stat-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: $aws-text-primary;
+  }
+
+  &__price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #dce8f5;
+    font-size: 14px;
+    font-weight: 600;
+    color: $aws-text-secondary;
+  }
+
+  &__price-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: $aws-blue;
+  }
+}
+
+// ─── Alert ────────────────────────────────────────────────────────────────────
+
+.nd-alert {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 12px;
+
+  &--error { background: #fce8e6; color: $aws-red; border: 1px solid #f5c6c2; }
+}
+
+// ─── Actions ─────────────────────────────────────────────────────────────────
+
+.nd-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.nd-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 18px;
+  background: $aws-blue;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &--flex { flex: 1; }
+
+  &:hover:not(:disabled) { background: #0762b8; }
+  &:disabled { opacity: 0.65; cursor: not-allowed; }
+}
+
+.nd-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 16px;
+  background: transparent;
+  color: $aws-text-secondary;
+  border: 1px solid $aws-border;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) { border-color: $aws-blue; color: $aws-blue; }
+  &:disabled { opacity: 0.65; cursor: not-allowed; }
+}
+
+.nd-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: ndSpin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes ndSpin { to { transform: rotate(360deg); } }
+
+// ─── Map panel ────────────────────────────────────────────────────────────────
+
+.nd-map-panel {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+
+  .leaflet-container { height: 100%; width: 100%; }
+}
+
+.nd-map-hint {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: rgba(9,114,211,0.92);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+// ─── Success screen ───────────────────────────────────────────────────────────
+
+.nd-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f3f3;
+}
+
+.nd-success-card {
+  text-align: center;
+  background: #fff;
+  border: 1px solid $aws-border;
+  border-radius: 12px;
+  padding: 48px 40px;
+  max-width: 440px;
+  width: 100%;
+
+  h2 { font-size: 22px; font-weight: 700; color: $aws-text-primary; margin: 12px 0 8px; }
+  p  { font-size: 14px; color: $aws-text-secondary; margin: 0 0 24px; }
+}
+
+.nd-success-icon { font-size: 56px; }
+
+.nd-success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+
+@media (max-width: 900px) {
+  .new-delivery { flex-direction: column; height: auto; }
+  .nd-form-panel { width: 100%; min-width: unset; border-right: none; border-bottom: 1px solid $aws-border; }
+  .nd-map-panel  { height: 380px; }
+}

@@ -1,0 +1,128 @@
+/* ── LocalMap styles ───────────────────────────────────────────────────────────
+ * Two themes:
+ *   'google' (default) — warm white / beige, Google Maps look
+ *   'dark'             — slate-900 background, dark dashboard style
+ */
+
+/* ── Theme backgrounds ───────────────────────────────────────────────────────── */
+.leaflet-container {
+  background: #f5f3ef;    /* warm white fallback (google theme default) */
+  font-family: -apple-system, BlinkMacSystemFont, "Google Sans", Roboto, Arial, sans-serif;
+}
+
+.local-map-dark .leaflet-container {
+  background: #0f172a !important;   /* Tailwind slate-900 */
+}
+
+.local-map-google .leaflet-container {
+  background: #e8e0d8 !important;   /* Google Maps beige land */
+}
+
+/* ── Zoom controls ────────────────────────────────────────────────────────────── */
+.local-map-google .leaflet-control-zoom {
+  border: 1px solid #ccc !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25) !important;
+  border-radius: 4px !important;
+}
+.local-map-google .leaflet-control-zoom a {
+  background: white !important;
+  color: #5f6368 !important;
+  border-bottom-color: #ddd !important;
+  font-size: 18px !important;
+  font-weight: 300 !important;
+  line-height: 30px !important;
+}
+.local-map-google .leaflet-control-zoom a:hover {
+  background: #f5f5f5 !important;
+  color: #333 !important;
+}
+
+/* ── Attribution ─────────────────────────────────────────────────────────────── */
+.local-map-google .leaflet-control-attribution {
+  background: rgba(255,255,255,0.8) !important;
+  color: #888 !important;
+  font-size: 10px !important;
+  border-radius: 4px 0 0 0 !important;
+}
+
+/* ── Popup styling ───────────────────────────────────────────────────────────── */
+.local-map-google .leaflet-popup-content-wrapper {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06) !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.local-map-google .leaflet-popup-content {
+  margin: 14px 16px !important;
+}
+.local-map-google .leaflet-popup-tip {
+  background: white !important;
+}
+
+/* ── Area name labels ─────────────────────────────────────────────────────────── */
+.map-area-label {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.map-area-label-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  /* White halo outline for legibility on any background */
+  text-shadow:
+     1px  1px 0 rgba(248,245,240,0.95),
+    -1px  1px 0 rgba(248,245,240,0.95),
+     1px -1px 0 rgba(248,245,240,0.95),
+    -1px -1px 0 rgba(248,245,240,0.95),
+     0    1px 2px rgba(248,245,240,0.8);
+}
+
+.map-area-label-text.map-area-label--city {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3c4043;
+  letter-spacing: 0.05em;
+  text-shadow:
+     1px  1px 0 rgba(248,245,240,0.98),
+    -1px  1px 0 rgba(248,245,240,0.98),
+     1px -1px 0 rgba(248,245,240,0.98),
+    -1px -1px 0 rgba(248,245,240,0.98),
+     0    2px 4px rgba(248,245,240,0.9);
+}
+
+/* ── Road name labels ────────────────────────────────────────────────────────── */
+.map-road-label {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.map-road-label-text {
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: #70757a;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  text-shadow:
+     1px  1px 0 rgba(255,255,255,0.95),
+    -1px  1px 0 rgba(255,255,255,0.95),
+     1px -1px 0 rgba(255,255,255,0.95),
+    -1px -1px 0 rgba(255,255,255,0.95);
+}
+
+/* ── Static / thumbnail maps ─────────────────────────────────────────────────── */
+.local-map-static .leaflet-control-attribution { display: none !important; }
+.local-map-static .leaflet-control-zoom        { display: none !important; }
+
+/* ── Crosshair click mode ────────────────────────────────────────────────────── */
+.local-map-crosshair .leaflet-container { cursor: crosshair !important; }

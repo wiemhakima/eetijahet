@@ -1,0 +1,96 @@
+@use '../../styles/variables' as *;
+@use './styles/hero';
+@use './styles/balance';
+@use './styles/cards';
+@use './styles/invoices';
+@use './styles/payment';
+
+// Billing Page Layout
+.billing-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+  color: $text-color;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.billing-content {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+// Main Grid: Service Usage + Transactions side by side
+.billing-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2rem);
+
+  @media (max-width: $breakpoint-xl) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Focus states for accessibility
+.billing-page {
+  .card-action-btn:focus,
+  .pm-action-btn:focus,
+  .invoice-download-btn:focus,
+  .toggle-switch input:focus + .toggle-slider {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-lg) {
+  .billing-content {
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .billing-hero {
+    padding: clamp(1rem, 2vw, 1.5rem);
+
+    .hero-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .hero-stats {
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .billing-content {
+    padding: 1rem;
+  }
+
+  .billing-hero {
+    padding: 1rem;
+
+    .hero-stats {
+      flex-direction: column;
+      gap: 1rem;
+
+      .stat-divider {
+        width: 60px;
+        height: 1px;
+      }
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .billing-page {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

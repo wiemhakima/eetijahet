@@ -1,0 +1,256 @@
+$aws-card-bg:        #ffffff;
+$aws-border:         #d5dbdb;
+$aws-text-primary:   #16191f;
+$aws-text-secondary: #545b64;
+$aws-text-muted:     #687078;
+$aws-blue:           #0972d3;
+$aws-green:          #037f0c;
+$aws-orange:         #d97706;
+
+.tracking-page {
+  display: flex;
+  height: calc(100vh - 112px);
+  border: 1px solid $aws-border;
+  border-radius: 8px;
+  overflow: hidden;
+  background: $aws-card-bg;
+}
+
+.tp-panel {
+  width: 360px;
+  min-width: 320px;
+  flex-shrink: 0;
+  border-right: 1px solid $aws-border;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  &__header {
+    padding: 20px 20px 12px;
+    border-bottom: 1px solid $aws-border;
+    position: relative;
+  }
+
+  &__title { font-size: 16px; font-weight: 700; color: $aws-text-primary; margin: 0 0 3px; }
+  &__desc  { font-size: 13px; color: $aws-text-secondary; margin: 0; }
+}
+
+.tp-live-dot {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 12px;
+  color: #34a853;
+  font-weight: 600;
+  animation: tpPulse 2s ease infinite;
+}
+
+@keyframes tpPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.tp-loading, .tp-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: $aws-text-secondary;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.tp-empty__icon { font-size: 40px; opacity: 0.4; }
+
+.tp-list { padding: 12px; display: flex; flex-direction: column; gap: 12px; }
+
+.tp-card {
+  border: 1.5px solid $aws-border;
+  border-radius: 10px;
+  padding: 14px;
+  transition: border-color 0.15s;
+
+  &--active { border-color: $aws-blue; background: #f0f7ff; }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &__id   { font-weight: 700; color: $aws-blue; font-size: 13px; }
+
+  &__route {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 12px;
+  }
+
+  &__point {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: $aws-text-secondary;
+    padding: 3px 0;
+  }
+
+  &__line {
+    width: 2px;
+    height: 10px;
+    background: $aws-border;
+    margin-left: 6px;
+  }
+
+  &__eta {
+    margin-top: 10px;
+    font-size: 12px;
+    color: $aws-text-secondary;
+    background: #fef3e2;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+}
+
+.tp-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 10px;
+
+  &--pending     { background: #e8f4fd; color: $aws-blue; }
+  &--accepted    { background: #e8f4fd; color: #0762b8; }
+  &--in_progress { background: #fef3e2; color: $aws-orange; }
+  &--delivered   { background: #e6f4ea; color: $aws-green; }
+  &--cancelled   { background: #fce8e6; color: #c5221f; }
+}
+
+.tp-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1.5px currentColor;
+
+  &--green { color: #34a853; background: #34a853; }
+  &--red   { color: #ea4335; background: #ea4335; }
+}
+
+// Status steps
+.tp-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: 8px;
+}
+
+.tp-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+
+  &__dot {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 2px solid $aws-border;
+    background: #f8f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: $aws-text-muted;
+    z-index: 1;
+    transition: all 0.2s;
+  }
+
+  &__label {
+    font-size: 9px;
+    color: $aws-text-muted;
+    text-align: center;
+    margin-top: 3px;
+    line-height: 1.2;
+  }
+
+  &__line {
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    right: -50%;
+    height: 2px;
+    background: $aws-border;
+    z-index: 0;
+  }
+
+  &--done {
+    .tp-step__dot { border-color: $aws-green; background: $aws-green; color: #fff; }
+    .tp-step__line { background: $aws-green; }
+    .tp-step__label { color: $aws-green; }
+  }
+
+  &--current {
+    .tp-step__dot { border-color: $aws-blue; background: $aws-blue; color: #fff; }
+    .tp-step__label { color: $aws-blue; font-weight: 600; }
+  }
+}
+
+.tp-map-panel {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+  .leaflet-container { height: 100%; width: 100%; }
+}
+
+.tp-map-empty {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(242,243,243,0.8);
+  font-size: 14px;
+  color: $aws-text-secondary;
+  pointer-events: none;
+}
+
+// ─── Driver info ──────────────────────────────────────────────────────────────
+
+.tp-driver-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: #f0f7ff;
+  border: 1px solid #c2dcf5;
+  border-radius: 8px;
+  font-size: 13px;
+
+  &__icon { font-size: 20px; }
+
+  &__name {
+    font-weight: 600;
+    color: #16191f;
+  }
+
+  &__phone {
+    font-size: 12px;
+    color: #545b64;
+    margin-top: 2px;
+  }
+}
+
+// ─── Status badge additions ───────────────────────────────────────────────────
+
+.tp-badge {
+  &--picked_up  { background: #f0fdf4; color: #166534; }
+  &--in_transit { background: #eff6ff; color: #1d4ed8; }
+}
+
+.tp-done-hint {
+  font-size: 12px;
+  color: #687078;
+  margin-top: 4px;
+}
