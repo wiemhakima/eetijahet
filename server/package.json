@@ -1,27 +1,15 @@
 {
-  "name": "directions-api-server",
-  "version": "1.0.0",
-  "description": "A production-ready API server for the Directions application",
-  "main": "src/server.js",
+  "name": "eetijahet-server",
+  "version": "2.0.0",
+  "description": "Eetijahet — SaaS plateforme livraison — Server TypeScript",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "test": "jest --coverage",
-    "lint": "eslint src/**/*.js",
-    "format": "prettier --write 'src/**/*.js'",
-    "seed:test": "node src/scripts/seedTestUsers.js",
-    "seed:admin": "node src/scripts/seedAdmin.js",
-    "reset:admin": "node src/scripts/resetAdminPassword.js"
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src/**/*.ts"
   },
-  "keywords": [
-    "express",
-    "api",
-    "eta",
-    "prediction",
-    "directions"
-  ],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@ngrok/ngrok": "^1.7.0",
     "axios": "^1.11.0",
@@ -29,26 +17,23 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "express-rate-limit": "^8.5.1",
     "jsonwebtoken": "^9.0.2",
     "localtunnel": "^2.0.2",
     "moment-timezone": "^0.5.48",
     "mongoose": "^8.14.0",
-    "ngrok": "^5.0.0-beta.2",
     "node-cache": "^5.1.2",
-    "node-fetch": "^2.7.0",
     "nodemailer": "^8.0.5",
     "python-shell": "^5.0.0",
     "socket.io": "^4.8.3"
   },
   "devDependencies": {
-    "eslint": "^8.38.0",
-    "jest": "^29.5.0",
-    "nodemon": "^3.1.10",
-    "prettier": "^2.8.7",
-    "supertest": "^6.3.3"
-  },
-  "engines": {
-    "node": ">=14.0.0"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.0.0",
+    "@types/nodemailer": "^6.4.17",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2"
   }
 }
