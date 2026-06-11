@@ -1,20 +1,17 @@
-import './i18n'
-import './styles/global.scss'
+// ============================================================
+// MAIN — Entry point
+// ============================================================
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import App from './App';
+import './styles/global.scss';
 
-import App from './App'
-import { Provider } from 'react-redux'
-import { StrictMode, Suspense } from 'react'
-import { createRoot } from 'react-dom/client'
-import { store } from './store/index'
-
-import 'leaflet/dist/leaflet.css';
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
     <Provider store={store}>
-      <Suspense fallback={null}>
-        <App />
-      </Suspense>
+      <App />
     </Provider>
-  </StrictMode>,
-)
+  </React.StrictMode>
+);
