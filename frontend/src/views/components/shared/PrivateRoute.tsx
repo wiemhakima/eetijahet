@@ -1,32 +1,29 @@
-// ============================================================
-// PrivateRoute VIEW — Role-based route guard
-// ============================================================
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAppSelector } from '../../store';
-import type { UserRole } from '../../models';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../../store';
+
+type UserRole = 'user' | 'admin' | 'driver' | 'developer' | 'agency_admin' | 'super_admin' | 'merchant';
 
 interface PrivateRouteProps {
   allowedRoles?: UserRole[];
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ allowedRoles }) => {
-  const { isAuthenticated, isLoading, user } = useAppSelector((state) => state.auth);
+  const { isAuthenticated, isLoading, user } = useSelector((state: RootState) => state.auth);
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+        <div style={{ width: 48, height: 48, border: '4px solid #e5e7eb', borderTopColor: '#3b82f6', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
       </div>
     );
   }
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
+  if (!isAuthenticated) return <Navigate to="/login" replace />;
 
-  if (allowedRoles && user && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/unauthorized" replace />;
+  if (allowedRoles && user && !allowedRoles.includes(user.role as UserRole)) {
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;
